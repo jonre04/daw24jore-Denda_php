@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mediateka</title>
+        <link rel="stylesheet" href="css/mediateka.css">
+        <script src="js/mediateka.js" defer></script>
+         <script src="js/audio.js" defer></script>
+
+    </head>
+    <body>
+        <header class="header">
+            <div class="logo-container">
+                <img src="../img/logoa.png" alt="logoa">
+                <h1>RUN & GO</h1>
+            </div>
+            <nav class="menu">
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="menu-icon">&#9776;</label>
+                <ul class="menu-list">
+                    <li><a href="../hasiera/index.php">Index</a></li>
+                    <li><a href="../katalogoa/index.php">Katalogoa</a></li>
+                    <li><a href="../saskia/index.php">Saskia</a></li>
+                    <li><a href="../eskaria/index.php">Eskaria</a></li>
+                    <li><a href="../kontaktua/index.php">Kontaktua</a></li>
+                    <li><a href="../mediateka/index.html">Mediateka</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="ikono-multzoa">
+                <a href="#" class="sprite-icon twitter" title="Twitter"></a>
+                <a href="#" class="sprite-icon rss" title="RSS"></a>
+                <a href="#" class="sprite-icon facebook" title="Facebook"></a>
+            </div>
+            
+            <hr>
+
+            <h1>📷 Irudiek</h1>
+            
+            <div class="carousel-container">
+                
+                <button class="carousel-btn prev" onclick="cambiarFoto(-1)">&#10094;</button>
+
+                <figure class="carousel-figure">
+                    <img id="imagenCarrusel" src="img/mountainskies.png" alt="Imagen Galeria">
+                    <figcaption id="textoCarrusel">Cargando imágenes...</figcaption>
+                </figure>
+
+                <button class="carousel-btn next" onclick="cambiarFoto(1)">&#10095;</button>
+
+            </div>
+
+            <div class="puntos-container" id="puntosContainer"></div>
+
+            <hr>
+
+            <div class="video-section">
+                <h2>🎥 Zona de Video</h2>
+                <div class="selector-box">
+                    <select id="videoSelector">
+                        <option value="Esquí Alpino_ Lo mejor de Beijing 2022.mp4">Esquí Alpino</option>
+                        </select>
+                </div>
+                <video id="videoPlayer" controls>
+                    <source src="bigbuckbunny.mp4" type="video/mp4">
+                </video>
+                <div class="controls-container">
+                    <button class="play">PLAY</button>
+                    <button class="pause">Pause</button>
+                    <button class="stop">Stop</button>
+                    <button class="mute">MUTE</button>
+                    <button class="vol" id="volUp">VOL +</button>
+                    <button class="vol" id="volDown">VOL -</button>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="audio-section">
+                <h1>🎵 Audio Kontroladorea</h1>
+                <audio id="audio"></audio>
+                <div class="player-container">
+                    <div class="controls">
+                        <button class="btn-play" onclick="playAudio()">PLAY</button>
+                        <button class="btn-stop" onclick="stopAudio()">STOP</button>
+                        <button class="btn-nav" onclick="prev()">anterior</button>
+                        <button class="btn-nav" onclick="next()">siguiente</button>
+                    </div>
+                </div>
+                <p>Orain jotzen ari den abestia: <strong id="songName">---</strong></p>
+            </div>
+        </main>
+        <footer class="footer">
+            <p>&copy; 2024 RUN & GO. Todos los derechos reservados.</p>
+            <p><a href="proteccionDatos.html">Política de Privacidad y Protección de datos</a></p>
+        </footer>
+    </body>
+</html>

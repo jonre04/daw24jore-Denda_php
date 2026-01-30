@@ -1,0 +1,224 @@
+:root {
+    --primary-color: #ff6600; 
+    --secondary-color: #ff8300; 
+    --dark-color: #000000;
+    --light-color: #fff0d9; 
+    --text-color: #333;
+    --bg-footer: #ff6600;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--light-color);
+    line-height: 1.5;
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+.header {
+    background-color: var(--primary-color);   
+    padding: 1rem 5%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-container img {
+    width: 120px; 
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.menu-list {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+}
+
+.menu-list li a {
+    padding: 10px 15px;     
+    border-radius: 8px;       
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+
+.menu-list li:nth-child(odd) a {
+    background: black;
+}
+
+.menu-list li:nth-child(even) a {
+    background: #ff8c33;
+}
+
+.menu-list a:hover {
+    background: #ffa65c !important;
+    font-size: 1.3rem; 
+}
+
+#menu-toggle { display: none; }
+
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+main h1 {
+    font-size: 3rem;
+    margin: 20px 0;
+    text-align: center;
+}
+
+main h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+hr {
+    margin: 40px 0;
+    border: 0;
+    border-top: 2px solid var(--primary-color);
+    opacity: 0.3;
+}
+
+
+.carousel-container {
+    position: relative;
+    max-width: 700px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.carousel-figure img {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.carousel-figure figcaption {
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--dark-color);
+}
+
+.carousel-btn {
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.carousel-btn:hover { background-color: var(--primary-color); }
+.prev { left: 10px; }
+.next { right: 10px; }
+
+
+video, #videoPlayer {
+    width: 100%;
+    max-width: 700px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+    border: 4px solid var(--primary-color);
+    background: #000;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+
+.footer {
+    background-color: var(--bg-footer);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.footer a {
+    color: black;
+    font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+    .header { flex-direction: column; padding: 1rem; }
+    .header h1 { font-size: 1.8rem; }
+    .menu-list { flex-wrap: wrap; justify-content: center; margin-top: 15px; }
+    .menu-list li a { font-size: 0.9rem; }
+
+
+    .menu-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: var(--primary-color);
+        width: 220px;
+        padding: 15px;
+        border-radius: 0 0 8px 8px;
+    }
+
+    #menu-toggle:checked ~ .menu-list {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 { font-size: 40px; }
+    .carousel-figure figcaption { font-size: 30px; }
+    .logo-container img { width: 150px; }
+}

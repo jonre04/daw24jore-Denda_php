@@ -1,0 +1,258 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #fff0d9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #333;
+}
+
+.header {
+  background-color: #ff6600;
+  padding: 1.5rem 5%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo-container img {
+  width: clamp(150px, 15vw, 300px);
+}
+
+.header h1 {
+  flex: 1;
+  text-align: center;
+  font-size: clamp(30px, 5vw, 80px);
+  margin: 0 15px;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.menu-list li a {
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  font-size: clamp(16px, 2vw, 30px);
+  transition: all 0.2s ease;
+}
+
+.menu-list li:nth-child(odd) a {
+  background: black;
+}
+
+.menu-list li:nth-child(even) a {
+  background: #ff8c33;
+}
+
+.menu-list li a:hover {
+  background: #ffa65c;
+  font-size: clamp(18px, 2.2vw, 34px);
+}
+
+.hero {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../../img/fondo.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h2 {
+  font-size: clamp(40px, 8vw, 110px);
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.hero h3 {
+  font-size: clamp(25px, 5vw, 75px);
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: clamp(18px, 3vw, 40px);
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.btn-contact {
+  background-color: #ff765c;
+  color: white;
+  padding: 10px 30px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: clamp(20px, 3vw, 50px);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-contact:hover {
+  background-color: #ff8c78;
+  transform: scale(1.05);
+}
+
+.main {
+  padding: 15px;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.container h2 {
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: clamp(35px, 6vw, 80px);
+  margin-bottom: 30px;
+}
+
+.produktuak-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 15px 0;
+}
+
+.produktua {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.produktua:hover {
+  background-color: #ff8300;
+  transform: translateY(-5px);
+}
+
+.produktua img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.produktua h3 a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: clamp(24px, 3vw, 45px);
+}
+
+.produktua p {
+  color: #000;
+  font-weight: bold;
+  font-size: clamp(20px, 2.5vw, 35px);
+}
+
+.prezio-berria {
+  color: #446600;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-left: 10px;
+}
+
+.deskontu-etiketa, .nobedade-etiketa {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.deskontu-etiketa { background-color: #e74c3c; }
+.nobedade-etiketa { background-color: #200954; }
+
+.btn-orange {
+  background-color: #ff6600;
+  color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.footer {
+  background: #ff6600;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .produktuak-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .menu-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background-color: #ff6600;
+    width: 200px;
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 100;
+  }
+
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+  }
+
+  #menu-toggle:checked ~ .menu-list {
+    display: flex;
+  }
+}
+
+@media (max-width: 600px) {
+  .produktuak-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header h1 {
+    order: 3;
+    width: 100%;
+    margin-top: 10px;
+  }
+}

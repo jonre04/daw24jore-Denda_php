@@ -1,0 +1,97 @@
+1|Kamiseta Nike Dri-FIT ADV|Errendimendu handiko kirol-kamiseta, Dri-FIT ADV teknologiarekin transpiragarritasun maximoa lortzeko|Manga laburreko kamiseta|39.99|0|1|1
+2|Camiseta Adidas Primeblue|Parley Ocean Plastic hondakinekin egindako kamiseta iraunkorra, mozketa eroso eta egonkorrarekin|Manga laburra|34.99|0|0|1
+3|The North Face Easy Tee Kamiseta|Kotoi organiko premiumez egindako kamiseta, aurrealdeko logotipo serigrafiatua duena|Manga laburra|29.99|10|0|1
+4|Under Armour HeatGear Tank Tiranteduna|Konpresio arineko tiranteduna, HeatGear ehunarekin gorputza beti lehor mantentzeko|Tiranteduna|27.99|0|0|1
+5|Reebok Workout Ready Tiranteduna|Speedwick teknologiarekin, izerdia azkar xurgatzeko eta mugimendu askatasuna eskaintzeko|Tiranteduna|25.99|0|1|1
+6|Puma Studio Luxe Tiranteduna|Diseinu ergonomikodun tiranteduna, yoga eta entrenamendu funtzionalerako aproposa|Tiranteduna|29.99|0|0|1
+7|Columbia Omni-Heat Kamiseta Termikoa|Omni-Heat™ teknologia islatzailearekin, gorputzeko beroa mantentzeko diseinatua|Termikoa|44.99|0|1|1
+8|Patagonia Capilene Midweight Termikoa|Poliester birziklatuz egina, hezetasun-kontrol bikainarekin eta jostura lau erosoekin|Termikoa|49.99|0|0|1
+9|adidas Adizero Prime SP 4|100m eta 200m lasterketetarako goi-mailako atletismo zapatilak, Lightstrike Pro eta karbono-plakarekin|Zapatila|180|0|1|3
+10|Nike Zoom Superfly Elite 2 (Clavos)|Iltze ultraligerodunak, sprinter profesionalentzako, 100–400m arteko probetarako|Iltzedun zapatilak|149.99|5|1|3
+11|Adidas Adizero Boston 12 (Gabe Clavos)|Eguneroko entrenamendurako zapatila arina, Energyrods teknologiaren laguntzaz|Zapatilak|159.99|0|0|3
+12|ASICS Metaspeed Sky+ (Gabe Clavos)|Karbonozko plaka duen zapatila ultraligerua, maratoietarako eta distantzia luzeetarako|Zapatilak|249.99|15|1|3
+13|Nike AeroSwift Pro|Elastiko arina, oso transpiragarria eta konpresio ertainekoa; lehiaketa mailarako pentsatua|Malla motzak|74.99|10|1|2
+14|Adidas Adizero Split Short|Ultraligerua eta mugimendu askatasun osoa ematen duena, lehiaketetarako aproposa|Malla motzak|59.95|0|0|2
+15|Garmin Forerunner 965|GPS erloju premiuma, AMOLED pantaila eta entrenamendu-metrika aurreratuak dituena|Erlojua|649.99|5|1|4
+16|Coros Pace 3|Erloju arina eta zehatza, 38 orduko autonomia GPS moduan|Erlojua|249|0|0|4
+17|Puma Steel Track Spikes 6mm|Altzairuzko 6 mm iltze sendoak, pista sintetikoetarako diseinatuak|Iltzeak|14.99|0|0|5
+18|Mondo Ceramic Spikes 5mm|Zeramikazko iltze arinak, trakzio eta iraunkortasun handikoak|Iltzeak|19.99|0|1|5
+19|Nike Therma-FIT Elite|Korrikarako sudadera termikoa, izerdiaren kontrol aurreratuarekin|Sudadera|84.99|10|1|6
+20|Under Armour Rival Fleece|Oihal leun eta beroz egina, hotzarekin entrenatzeko aproposa|Sudadera|69.95|0|0|6
+21|Salomon Bonatti Waterproof Jacket|Euri-babes arina, 10k/10k ur-erresistentzia eta arnasketa maila handikoa|Zira|179.99|0|1|7
+22|Nike Windrunner Shield|Haize eta euritik babesteko jaketa arina eta transpiragarria|Zira|129.99|0|0|7
+23|Oakley Encoder Strike Vented|Kirol betaurreko fotokromatikoak, ikuspen eta babes maximoarekin|Betaurrekoak|239.99|5|1|8
+24|Nike Skylon Ace XV|Lente polarizatudun betaurreko arinak, eguzkipeko entrenamendurako idealak|Betaurrekoak|129.99|0|0|8
+25|Long Tight Pro Endurance|Malla luze teknikoa, konpresio ertainarekin eta epeltasun kontrolatuarekin, distantzia luzeko entrenamenduetarako egokitua|Malla luzeak|82.99|0|0|2
+26|Thermal Run Long Elite|Negurako malla luze termikoa, transpirazio aurreratua eta haize-babes integratua|Malla luzeak|94.5|5|1|2
+27 |Ariketa intentsiboetarako egokituta, ehun arin eta transpiragarriarekin|Manga Corta|34.99|5|1|1
+28|Elite Sprint Mallak|Konpresio handiko ehuna, elastikotasun eta arnasketa bikainarekin|Mailak|79.99|10|1|2
+29|New Balance FuelCell Pro Elite|Erreakzio azkarreko zapatilla, distantzia ertainetarako optimizatua|Zapatilla Deportiboak|189.99|0|1|3
+30|HOKA Rocket X2 Evo|Karbono-plakarekin eta pisu oso arinarekin, lehiaketarako aproposa|Zapatilla Deportiboak|249.5|0|0|3
+31|Nike Zoom Rival S 10 (Clavos)|Sprinterrentzako clavo arinak, 60m eta 400m arteko probetarako diseinatuak|Iltzedun zapatillak|99.99|0|1|3
+32|Polar Vantage V3|Errendimendu altuko GPS erlojua, bihotz-maiztasun neurtze zehatzarekin|Erlojua|449.99|10|1|4
+33|Suunto Race Titanium|Titaniozko karkasa arina, autonomia luzea eta entrenamendu aurreratuak|Erlojua|399.99|0|0|4
+34|Pyramid Steel Spikes 6mm|Altzairuzko iltze sendoak, trakzio maximoa eskaintzen dutenak|Iltzeak|12.99|0|0|5
+34|Pyramid Steel Spikes 9mm|Altzairuzko iltze sendoak, trakzio maximoa eskaintzen dutenak|Iltzeak|12.99|0|0|5
+36|Nike Pro Thermal Advance|Tenperatura erregulazio bikaina eta isolamendu arina|Izerditakoa|89.99|0|1|6
+37|Adidas Heat.RDY Runner|Berotasuna askatzeko diseinua, entrenamendu bizi-bizietarako|Izerditakoa|74.99|12|0|6
+38|The North Face Flight Futurelight|Euri eta haizearen aurkako babes maximoa, oso arina|Zira|279.99|0|1|7
+39|Haglöfs Zira L.I.M Goretex|Uraren kontrako errendimendu paregabea eta transpirazio bikaina|Zira|259.99|0|0|7
+40|Julbo Aero React|Argi-baldintzetara automatikoki egokitzen diren lente fotokromatikoak|Betaurrekoak|199.99|0|1|8
+41|Adidas SP0050 Pro Shield|Babes bikaina eta ikuspen garbia distantzia luzeetarako|Betaurrekoak|169.99|0|0|8
+sqlite>
+
+CREATE TABLE produktuak (
+    id integer PRIMARY KEY AUTOINCREMENT,
+    izena text NOT NULL,
+    deskribapena textarea,
+    mota text,
+    prezioa DECIMAL(10,2),
+    deskontua integer,
+    nobedadeak integer,
+    kategoriaId integer, FOREIGN KEY (kategoriaId) REFERENCES kategorikoak(id) ON DELETE CASCADE);
+
+
+INSERT INTO produktuak (izena, deskribapena, mota, prezioa, deskontua, nobedadeak, kategoriaId) VALUES
+('Kamiseta Nike Dri-FIT ADV', 'Errendimendu handiko kirol-kamiseta, Dri-FIT ADV teknologiarekin transpiragarritasun maximoa lortzeko', 'Manga laburreko kamiseta', 39.99, 0, 1, 1),
+('Camiseta Adidas Primeblue', 'Parley Ocean Plastic hondakinekin egindako kamiseta iraunkorra, mozketa eroso eta egonkorrarekin', 'Manga laburra', 34.99, 0, 0, 1),
+('The North Face Easy Tee Kamiseta', 'Kotoi organiko premiumez egindako kamiseta, aurrealdeko logotipo serigrafiatua duena', 'Manga laburra', 29.99, 10, 0, 1),
+('Under Armour HeatGear Tank Tiranteduna', 'Konpresio arineko tiranteduna, HeatGear ehunarekin gorputza beti lehor mantentzeko', 'Tiranteduna', 27.99, 0, 0, 1),
+('Reebok Workout Ready Tiranteduna', 'Speedwick teknologiarekin, izerdia azkar xurgatzeko eta mugimendu askatasuna eskaintzeko', 'Tiranteduna', 25.99, 0, 1, 1),
+('Puma Studio Luxe Tiranteduna', 'Diseinu ergonomikodun tiranteduna, yoga eta entrenamendu funtzionalerako aproposa', 'Tiranteduna', 29.99, 0, 0, 1),
+('Columbia Omni-Heat Kamiseta Termikoa', 'Omni-Heat™ teknologia islatzailearekin, gorputzeko beroa mantentzeko diseinatua', 'Termikoa', 44.99, 0, 1, 1),
+('Patagonia Capilene Midweight Termikoa', 'Poliester birziklatuz egina, hezetasun-kontrol bikainarekin eta jostura lau erosoekin', 'Termikoa', 49.99, 0, 0, 1),
+('adidas Adizero Prime SP 4', '100m eta 200m lasterketetarako goi-mailako atletismo zapatilak, Lightstrike Pro eta karbono-plakarekin', 'Zapatila', 180, 0, 1, 3),
+('Nike Zoom Superfly Elite 2 (Clavos)', 'Iltze ultraligerodunak, sprinter profesionalentzako, 100–400m arteko probetarako', 'Iltzedun zapatilak', 149.99, 5, 1, 3),
+('Adidas Adizero Boston 12 (Gabe Clavos)', 'Eguneroko entrenamendurako zapatila arina, Energyrods teknologiaren laguntzaz', 'Zapatilak', 159.99, 0, 0, 3),
+('ASICS Metaspeed Sky+ (Gabe Clavos)', 'Karbonozko plaka duen zapatila ultraligerua, maratoietarako eta distantzia luzeetarako', 'Zapatilak', 249.99, 15, 1, 3),
+('Nike AeroSwift Pro', 'Elastiko arina, oso transpiragarria eta konpresio ertainekoa; lehiaketa mailarako pentsatua', 'Malla motzak', 74.99, 10, 1, 2),
+('Adidas Adizero Split Short', 'Ultraligerua eta mugimendu askatasun osoa ematen duena, lehiaketetarako aproposa', 'Malla motzak', 59.95, 0, 0, 2),
+('Garmin Forerunner 965', 'GPS erloju premiuma, AMOLED pantaila eta entrenamendu-metrika aurreratuak dituena', 'Erlojua', 649.99, 5, 1, 4),
+('Coros Pace 3', 'Erloju arina eta zehatza, 38 orduko autonomia GPS moduan', 'Erlojua', 249, 0, 0, 4),
+('Puma Steel Track Spikes 6mm', 'Altzairuzko 6 mm iltze sendoak, pista sintetikoetarako diseinatuak', 'Iltzeak', 14.99, 0, 0, 5),
+('Mondo Ceramic Spikes 5mm', 'Zeramikazko iltze arinak, trakzio eta iraunkortasun handikoak', 'Iltzeak', 19.99, 0, 1, 5),
+('Nike Therma-FIT Elite', 'Korrikarako sudadera termikoa, izerdiaren kontrol aurreratuarekin', 'Sudadera', 84.99, 10, 1, 6),
+('Under Armour Rival Fleece', 'Oihal leun eta beroz egina, hotzarekin entrenatzeko aproposa', 'Sudadera', 69.95, 0, 0, 6),
+('Salomon Bonatti Waterproof Jacket', 'Euri-babes arina, 10k/10k ur-erresistentzia eta arnasketa maila handikoa', 'Zira', 179.99, 0, 1, 7),
+('Nike Windrunner Shield', 'Haize eta euritik babesteko jaketa arina eta transpiragarria', 'Zira', 129.99, 0, 0, 7),
+('Oakley Encoder Strike Vented', 'Kirol betaurreko fotokromatikoak, ikuspen eta babes maximoarekin', 'Betaurrekoak', 239.99, 5, 1, 8),
+('Nike Skylon Ace XV', 'Lente polarizatudun betaurreko arinak, eguzkipeko entrenamendurako idealak', 'Betaurrekoak', 129.99, 0, 0, 8),
+('Long Tight Pro Endurance', 'Malla luze teknikoa, konpresio ertainarekin eta epeltasun kontrolatuarekin, distantzia luzeko entrenamenduetarako egokitua', 'Malla luzeak', 82.99, 0, 0, 2),
+('Thermal Run Long Elite', 'Negurako malla luze termikoa, transpirazio aurreratua eta haize-babes integratua', 'Malla luzeak', 94.50, 5, 1, 2),
+('TECHFIT Compression Training', 'Ariketa intentsiboetarako egokituta, ehun arin eta transpiragarriarekin', 'Termikoa', 34.99, 5, 1, 1),
+('Elite Sprint Mallak', 'Konpresio handiko ehuna, elastikotasun eta arnasketa bikainarekin', 'Mailak', 79.99, 10, 1, 2),
+('New Balance FuelCell Pro Elite', 'Erreakzio azkarreko zapatilla, distantzia ertainetarako optimizatua', 'Zapatilla Deportiboak', 189.99, 0, 1, 3),
+('HOKA Rocket X2 Evo', 'Karbono-plakarekin eta pisu oso arinarekin, lehiaketarako aproposa', 'Zapatilla Deportiboak', 249.50, 0, 0, 3),
+('Nike Zoom Rival S 10 (Clavos)', 'Sprinterrentzako clavo arinak, 60m eta 400m arteko probetarako diseinatuak', 'Iltzedun zapatillak', 99.99, 0, 1, 3),
+('Polar Vantage V3', 'Errendimendu altuko GPS erlojua, bihotz-maiztasun neurtze zehatzarekin', 'Erlojua', 599.99, 10, 1, 4),
+('Suunto Race Titanium', 'Titaniozko karkasa arina, autonomia luzea eta entrenamendu aurreratuak', 'Erlojua', 549.99, 0, 0, 4),
+('Pyramid Steel Spikes 5mm', 'Altzairuzko iltze sendoak, trakzio maximoa eskaintzen dutenak', 'Iltzeak', 16.99, 0, 1, 5),
+('Ceramic UltraGrip 7mm', 'Zeramikazko iltze arinak, atxikimendu handiarekin eta iraupen luzekoak', 'Iltzeak', 22.99, 5, 0, 5),
+('Nike Pro Thermal Advance', 'Tenperatura erregulazio bikaina eta isolamendu arina', 'Izerditakoa', 89.99, 0, 1, 6),
+('Adidas Heat.RDY Runner', 'Berotasuna askatzeko diseinua, entrenamendu bizi-bizietarako', 'Izerditakoa', 74.99, 12, 0, 6),
+('The North Face Flight Futurelight', 'Euri eta haizearen aurkako babes maximoa, oso arina', 'Zira', 279.99, 0, 1, 7),
+('Gore Wear R7 Shakedry', 'Uraren kontrako errendimendu paregabea eta transpirazio bikaina', 'Zira', 259.99, 0, 0, 7),
+('Julbo Aero React', 'Argi-baldintzetara automatikoki egokitzen diren lente fotokromatikoak', 'Betaurrekoak', 199.99, 0, 1, 8),
+('Adidas SP0050 Pro Shield', 'Babes bikaina eta ikuspen garbia distantzia luzeetarako', 'Betaurrekoak', 169.99, 0, 0, 8);
+

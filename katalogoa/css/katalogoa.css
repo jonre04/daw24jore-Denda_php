@@ -1,0 +1,291 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #fff0d9;
+  color: #333;
+  line-height: 1.5;
+  padding: 1rem;
+  overflow-x: hidden;
+}
+
+.header {
+  background-color: #ff6600;
+  background-size: cover;
+  background-position: center;
+  padding: 2.5rem 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container img {
+  width: 300px;
+}
+
+.header h1 {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  font-size: 120px;
+  margin-left: 15px;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.menu-list li a {
+  padding: 15px 12px;     
+  border-radius: 10px;       
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;    
+  transition: font-size 0.2s ease;
+}
+
+.menu-list li:nth-child(odd) a {
+  background: black;
+}
+
+.menu-list li:nth-child(even) a {
+  background: #ff8c33;
+}
+
+.menu-list li a:hover {
+  background: #ffa65c;
+  text-decoration: none;
+  font-size: 50px; 
+}
+
+.main h2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 80px;
+  margin-bottom: 20px; 
+}
+
+.kategoriak-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px; 
+  padding: 16px; 
+}
+
+.kategoria-flex img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  margin-bottom: 25px;
+
+}
+
+.kategoria-txartela {
+  background-color: #ff8300;
+  padding: 48px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex: 1 1 calc(33.33% - 24px); 
+  min-width: 250px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.kategoria-txartela:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  background-color: #ff8300;
+  width: 400px
+}
+
+.kategoria-txartela dt a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 72px; 
+  transition: font-size 0.2s ease;
+}
+
+.kategoria-txartela dt a:hover {
+  font-size: 80px; 
+  color: #000000;
+}
+
+.kategoria dd {
+  color: #000;
+  font-weight: bold;
+  font-size: 56px; 
+  transition: font-size 0.2s ease;
+}
+
+.kategoria dd:hover {
+  font-size: 64px;
+  color: #000000;
+}
+  
+.produktuak-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 45px;
+  padding: 15px 0;
+  justify-content: center;
+  
+  margin: 0 auto;
+}
+.produktua {
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  display: grid;
+  flex-direction: column;
+  position: relative;
+  flex: 1 1 calc(33.33% - 35px);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.produktua:hover {
+  background-color: #ff8300;
+}
+
+.produktua img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  margin-bottom: 25px;
+}
+
+.produktua h3 a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 55px;
+  transition: font-size 0.2s ease;
+}
+
+.produktua h3 a:hover {
+  font-size: 65px;
+  color: #000000;
+}
+
+.produktua p {
+  color: #000;
+  font-weight: bold;
+  font-size: 45px;
+  transition: font-size 0.2s ease;
+}
+
+.prezio-berria {
+  color: #446600;
+  font-weight: bold;
+  font-size:50px;
+  display: inline-block; 
+  margin-left: 10px; 
+}
+
+.deskontu-etiketa {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #e74c3c;
+  color: white;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  z-index: 10;
+  font-size: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nobedade-etiketa {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #200954;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  z-index: 10;
+  font-size: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-orange {
+  background-color: #ff6600;
+  color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-orange:hover {
+  background-color: #e65c00;
+  border-color: #e65c00;
+  color: white;
+  font-size: 35px;
+}
+
+.footer {
+  background-color: #ff6600;
+  color: white;
+  padding: 1.5rem 0;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media (max-width: 1025px) {
+  .produktua,
+  .kategoria-txartela {
+    flex: 1 1 calc(50% - 1.5rem);
+  }
+  .menu-icon {
+    display: block;
+  }
+  .menu-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ff6600;
+    width: 220px;
+    padding: 15px;
+    border-radius: 0 0 8px 8px;
+  }
+  #menu-toggle:checked ~ .menu-list {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .produktua,
+  .kategoria-txartela {
+    flex: 1 1 100%;
+  }
+  .produktua img {
+    max-height: 200px;
+  }
+  .menu-icon {
+    font-size: 20px;
+  }
+  .menu-list {
+    width: 180px;
+  }
+}
