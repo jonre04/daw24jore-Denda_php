@@ -1,8 +1,8 @@
 <?php
-require_once('../klaseak/com/leartik/daw24jore/kategoriak/Kategoria.php');
-require_once('../klaseak/com/leartik/daw24jore/kategoriak/KategoriaDB.php');
-require_once('../klaseak/com/leartik/daw24jore/produktuak/Produktua.php');
-require_once('../klaseak/com/leartik/daw24jore/produktuak/ProduktuaDB.php');
+require_once('../klaseak/com/leartik/daw24jore/kategoriak/kategoria.php');
+require_once('../klaseak/com/leartik/daw24jore/kategoriak/kategoriaDB.php');
+require_once('../klaseak/com/leartik/daw24jore/produktuak/produktua.php');
+require_once('../klaseak/com/leartik/daw24jore/produktuak/produktuaDB.php');
 
 use com\leartik\daw24jore\kategoriak\KategoriaDB;
 use com\leartik\daw24jore\produktuak\ProduktuaDB;
