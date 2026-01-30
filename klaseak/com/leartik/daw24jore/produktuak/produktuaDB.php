@@ -10,7 +10,7 @@ class ProduktuaDB
    public static function selectProduktuak()
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $erregistroak = $db->query('SELECT * FROM produktuak');
             $produktuak = array(); 
 
@@ -29,12 +29,13 @@ class ProduktuaDB
             return $produktuak; 
 
         } catch (Exception $e) {
-    
+            error_log($e->getMessage());
+            return [];
         }
     }
     public static function selectProduktua($id){
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $stmt = $db->prepare('SELECT * FROM produktuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -60,12 +61,18 @@ class ProduktuaDB
     }
 
     
-    public static function generarEskaintzak($produktuak) {
-        $eskaintzak = array_filter($produktuak, function($produktua) {
-            return method_exists($produktua, 'getDeskontua') 
-                && (float)$produktua->getDeskontua() > 0
+  public static function generarEskaintzak($produktuak)
+    {
+        if (!is_array($produktuak) || empty($produktuak)) {
+            return "<p>Ez daude eskaintzak erakusteko.</p>";
+        }
+
+        $eskaintzak = array_filter($produktuak, function ($produktua) {
+            return is_object($produktua)
+                && method_exists($produktua, 'getDeskontua')
+                && (float) $produktua->getDeskontua() > 0
                 && method_exists($produktua, 'getNobedadeak')
-                && $produktua->getNobedadeak() != 1;  
+                && (int) $produktua->getNobedadeak() !== 1;
         });
 
         if (empty($eskaintzak)) {
@@ -73,24 +80,27 @@ class ProduktuaDB
         }
 
         $html = "<div class='produktuak-grid'>";
+
         foreach ($eskaintzak as $produktua) {
-            $deskontua = (float)$produktua->getDeskontua();
-            $prezioa   = (float)$produktua->getPrezioa();
+            $deskontua = (float) $produktua->getDeskontua();
+            $prezioa   = (float) $produktua->getPrezioa();
             $prezio_berria = $prezioa * (1 - ($deskontua / 100));
 
             $img_file = self::getImagePath($produktua);
 
             $html .= "<div class='produktua'>";
             $html .= "<img src='" . htmlspecialchars($img_file, ENT_QUOTES) . "' alt='" . htmlspecialchars($produktua->getIzena(), ENT_QUOTES) . "'>";
-            $html .= "<h3><a href='index.php?produktua_id=" . $produktua->getId() . "'>" . htmlspecialchars($produktua->getIzena(), ENT_QUOTES) . "</a></h3>";
-            $html .= "<p>Prezioa: <del>" . number_format($prezioa, 2) . "€</del> <span class='prezio-berria'>" . number_format($prezio_berria, 2) . "€</span></p>";
+            $html .= "<h3><a href='index.php?produktua_id=" . (int) $produktua->getId() . "'>"
+                . htmlspecialchars($produktua->getIzena(), ENT_QUOTES) . "</a></h3>";
+            $html .= "<p>Prezioa: <del>" . number_format($prezioa, 2) . "€</del> "
+                . "<span class='prezio-berria'>" . number_format($prezio_berria, 2) . "€</span></p>";
             $html .= "</div>";
         }
+
         $html .= "</div>";
-        
+
         return $html;
     }
-
     public static function generarNobedadeak($produktuak) {
         $nobedadeak = array_filter($produktuak, function($produktua) {
             return method_exists($produktua, 'getNobedadeak') 
@@ -137,7 +147,7 @@ class ProduktuaDB
     }
    public static function selectProduktuakByKategoria($idKategoria) {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $idKategoria = (int) $idKategoria;
@@ -173,7 +183,7 @@ class ProduktuaDB
     public static function insertProduktua($produktua)
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $sql = "INSERT INTO produktuak (izena, deskribapena, mota, prezioa, deskontua, nobedadeak, kategoriaId) VALUES "; 
             $sql = $sql . "('" . $produktua->getIzena() . "'";
             $sql = $sql . ",'" . $produktua->getDeskribapena() . "'";
@@ -193,7 +203,7 @@ class ProduktuaDB
 
    public static function updateProduktua($produktua) {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $sql = "UPDATE produktuak SET izena = :izena, deskribapena = :deskribapena, mota = :mota, prezioa = :prezioa, deskontua = :deskontua, nobedadeak = :nobedadeak, kategoriaId = :kategoriaId WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':izena', $produktua->getIzena());
@@ -218,7 +228,7 @@ class ProduktuaDB
     }
 
     try {
-        $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+        $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
         $sql = "DELETE FROM produktuak WHERE id = :id";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);

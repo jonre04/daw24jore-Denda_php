@@ -9,7 +9,7 @@ class KategoriaDB
     public static function selectKategoriak()
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+             $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $erregistroak = $db->query('SELECT * FROM kategoriak');
             $kategoriak = array();
 
@@ -30,7 +30,7 @@ class KategoriaDB
     public static function selectKategoria($id)
     {
        try{
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $erregistroak = $db->query('SELECT * FROM kategoriak where id=' . $id);
             $kategoriak = null;
 
@@ -51,7 +51,7 @@ class KategoriaDB
     public static function insertKategoria($kategoria)
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $sql = "INSERT INTO kategoriak (izena, deskribapena) VALUES "; 
             $sql = $sql . "('" . $kategoria->getIzena() . "'";
             $sql = $sql . ",'" . $kategoria->getDeskribapena() . "')";
@@ -66,7 +66,7 @@ class KategoriaDB
 
    public static function updatekategoria($kategoria) {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $sql = "UPDATE kategoriak SET izena = :izena, deskribapena = :deskribapena WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':izena', $kategoria->getIzena());
@@ -82,7 +82,7 @@ class KategoriaDB
     public static function deletekategoria($id)
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $sql = "DELETE FROM kategoriak WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);

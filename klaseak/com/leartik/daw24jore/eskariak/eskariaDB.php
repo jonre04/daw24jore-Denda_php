@@ -15,7 +15,7 @@ class EskariaDB
     public static function selectEskariak()
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $erregistroak = $pdo->query('SELECT * FROM eskariak');
             $eskariak = array();
 
@@ -51,7 +51,7 @@ class EskariaDB
     public static function selectDetaileak()
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $erregistroak = $pdo->query('SELECT * FROM detaileak');
             $detaileak = array();
             while ($erregistroa = $erregistroak->fetch(PDO::FETCH_ASSOC)) {
@@ -71,7 +71,7 @@ class EskariaDB
     public static function selectEskaria($id)
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $erregistroak = $pdo->prepare('SELECT * FROM eskariak WHERE id = :id');
             $erregistroak->execute([':id' => $id]);
             
@@ -100,7 +100,7 @@ class EskariaDB
     public static function selectDetaileakByEskaria($eskariaId)
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $erregistroak = $pdo->prepare('SELECT * FROM detaileak WHERE eskariaId = :eskariaId');
             $erregistroak->execute([':eskariaId' => $eskariaId]);
             $detaileak = array();
@@ -120,7 +120,7 @@ class EskariaDB
     public static function insertEskaria($eskaria)
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $sql = "INSERT INTO eskariak (data, izena, abizenak, helbidea, herria, postaKodea, probintzia, emaila) 
                     VALUES (:data, :izena, :abizenak, :helbidea, :herria, :postaKodea, :probintzia, :emaila)";
             
@@ -148,7 +148,7 @@ class EskariaDB
     public static function insertDetailea($detailea, $eskariaId)
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $sql = "INSERT INTO detaileak (eskariaId, produktuaId, ProduktuaPrezioa, kopurua) 
                     VALUES (:eskariaId, :produktuaId, :prezioa, :kopurua)";
             
@@ -170,7 +170,7 @@ class EskariaDB
     public static function updateEskaria($eskaria)
     {
         try {
-           $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $bezeroa = $eskaria->getBezeroa();
             $sql = "UPDATE eskariak SET izena = :izena, abizenak = :abizenak, helbidea = :helbidea, 
                     herria = :herria, postaKodea = :postaKodea, probintzia = :probintzia, emaila = :emaila,
@@ -196,7 +196,7 @@ class EskariaDB
     public static function updateDetailea($detailea, $id)
     {
         try {
-            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $sql = "UPDATE detaileak SET produktuaId = :prodId, kopurua = :kopurua WHERE id = :id";
             $erregistroak = $pdo->prepare($sql);
             return $erregistroak->execute([
@@ -213,7 +213,7 @@ class EskariaDB
     public static function deleteEskaria($id)
     {
         try {
-            $pdo = new PDO("sqlite:C:\\xampp\\htdocs\\Denda\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $erregistroak = $pdo->prepare("DELETE FROM eskariak WHERE id = :id");
             return $erregistroak->execute([':id' => $id]);
         } catch (Exception $e) {
@@ -224,7 +224,7 @@ class EskariaDB
     public static function deleteDetaileakByEskaria($eskariaId)
     {
         try {
-            $pdo = new PDO("sqlite:C:\\xampp\\htdocs\\Denda\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $erregistroak = $pdo->prepare("DELETE FROM detaileak WHERE eskariaId = :eskariaId");
             return $erregistroak->execute([':eskariaId' => $eskariaId]);
         } catch (Exception $e) {
@@ -236,7 +236,7 @@ class EskariaDB
     {
         $pdo = null; 
         try {
-            $pdo = new PDO("sqlite:C:\\xampp\\htdocs\\Denda\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
             $pdo->beginTransaction();
@@ -262,7 +262,7 @@ class EskariaDB
     public static function isProduktuaDetailetan($produktuaId)
     {
         try {
-            $pdo = new PDO("sqlite:C:\\xampp\\htdocs\\Denda\\Denda.db");
+            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
             $stmt = $pdo->prepare('SELECT COUNT(*) FROM detaileak WHERE produktuaId = :id');
             $stmt->execute([':id' => $produktuaId]);
             return $stmt->fetchColumn() > 0;
