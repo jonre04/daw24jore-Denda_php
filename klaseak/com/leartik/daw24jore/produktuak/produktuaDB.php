@@ -10,7 +10,7 @@ class ProduktuaDB
    public static function selectProduktuak()
     {
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $erregistroak = $db->query('SELECT * FROM produktuak');
             $produktuak = array(); 
 
@@ -34,7 +34,7 @@ class ProduktuaDB
     }
     public static function selectProduktua($id){
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $stmt = $db->prepare('SELECT * FROM produktuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -137,7 +137,7 @@ class ProduktuaDB
     }
    public static function selectProduktuakByKategoria($idKategoria) {
         try {
-           $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $idKategoria = (int) $idKategoria;
@@ -173,7 +173,7 @@ class ProduktuaDB
     public static function insertProduktua($produktua)
     {
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $sql = "INSERT INTO produktuak (izena, deskribapena, mota, prezioa, deskontua, nobedadeak, kategoriaId) VALUES "; 
             $sql = $sql . "('" . $produktua->getIzena() . "'";
             $sql = $sql . ",'" . $produktua->getDeskribapena() . "'";
@@ -193,7 +193,7 @@ class ProduktuaDB
 
    public static function updateProduktua($produktua) {
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $sql = "UPDATE produktuak SET izena = :izena, deskribapena = :deskribapena, mota = :mota, prezioa = :prezioa, deskontua = :deskontua, nobedadeak = :nobedadeak, kategoriaId = :kategoriaId WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':izena', $produktua->getIzena());
@@ -218,7 +218,7 @@ class ProduktuaDB
     }
 
     try {
-        $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+        $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
         $sql = "DELETE FROM produktuak WHERE id = :id";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);

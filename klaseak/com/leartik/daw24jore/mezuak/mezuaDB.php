@@ -9,7 +9,7 @@ class MezuaDB
     public static function selectMezuak()
     {
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $erregistroak = $db->query('SELECT * FROM mezuak');
             $mezuak = array();
 
@@ -33,7 +33,7 @@ class MezuaDB
     public static function getAllMezuak()
     {
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $erregistroak = $db->query('SELECT * FROM mezuak');
             $mezuak = array();
 
@@ -56,7 +56,7 @@ class MezuaDB
     }
     public static function selectMezua($id) {
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
             $stmt = $db->prepare('SELECT * FROM mezuak WHERE id = :id');
@@ -81,7 +81,7 @@ class MezuaDB
     public static function insertMezua($mezua)
     {
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $stmt = $db->prepare(
                 'INSERT INTO mezuak (izena, email, mezuaTestua, dataOrdua) 
                 VALUES (:izena, :email, :mezuaTestua, :dataOrdua)' 
@@ -101,7 +101,7 @@ class MezuaDB
 
     public static function updateMezua($mezua) {
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $stmt = $db->prepare(
                 'UPDATE mezuak SET izena = :izena, email = :email, 
                  mezuaTestua = :mezuaTestua, erantzunDa = :erantzunDa 
@@ -119,7 +119,7 @@ class MezuaDB
     public static function deleteMezua($id)
     {
         try {
-            $db = new PDO("sqlite:C:\\xampp\\htdocs\\daw24jore-Denda_php\\Denda.db");
+            $db = new PDO("sqlite:\\var\\www\\html\\daw24jore-Denda_php\\Denda.db");
             $stmt = $db->prepare('DELETE FROM mezuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             
