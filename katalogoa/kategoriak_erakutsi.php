@@ -25,7 +25,7 @@ $kontagailua = 0;
 
 <header class="header">
     <div class="logo-container">
-        <img src="../img/logoa.png" alt="logoa">
+        <img src="https://jonrev-s3.s3.eu-central-1.amazonaws.com/logoa.png" alt="logoa">
         <h1>RUN & GO</h1>
     </div>
 
