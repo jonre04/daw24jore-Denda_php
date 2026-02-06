@@ -3,19 +3,31 @@
 namespace com\leartik\daw24jore\produktuak;
 use PDO;
 use Exception;
-
+use PDOException;
 
 class ProduktuaDB
 {
-   public static function selectProduktuak()
+    private static function getPDO() {
+        return new PDO(
+            "mysql:host=localhost;dbname=denda;charset=utf8mb4",
+            "admin",
+            "Leaartibai25",
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ]
+        );
+    }
+
+    public static function selectProduktuak()
     {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $erregistroak = $db->query('SELECT * FROM produktuak');
-            $produktuak = array(); 
+            $produktuak = [];
 
             while ($erregistroa = $erregistroak->fetch()) {
-                $produktua = new Produktua(); 
+                $produktua = new Produktua();
                 $produktua->setId($erregistroa['id']);
                 $produktua->setIzena($erregistroa['izena']);
                 $produktua->setDeskribapena($erregistroa['deskribapena']);
@@ -24,25 +36,27 @@ class ProduktuaDB
                 $produktua->setDeskontua($erregistroa['deskontua']);
                 $produktua->setNobedadeak($erregistroa['nobedadeak']);
                 $produktua->setKategoriaId($erregistroa['kategoriaId']);
-                $produktuak[] = $produktua; 
+                $produktuak[] = $produktua;
             }
-            return $produktuak; 
 
-        } catch (Exception $e) {
+            return $produktuak;
+
+        } catch (PDOException $e) {
             error_log($e->getMessage());
             return [];
         }
     }
+
     public static function selectProduktua($id){
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $stmt = $db->prepare('SELECT * FROM produktuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            
+
             $produktua = null;
 
-            if ($erregistroa = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($erregistroa = $stmt->fetch()) {
                 $produktua = new Produktua();
                 $produktua->setId($erregistroa['id']);
                 $produktua->setIzena($erregistroa['izena']);
@@ -54,14 +68,14 @@ class ProduktuaDB
                 $produktua->setKategoriaId($erregistroa['kategoriaId']);
             }
             return $produktua;
+
         } catch (Exception $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return null;
         }
     }
 
-    
-  public static function generarEskaintzak($produktuak)
+    public static function generarEskaintzak($produktuak)
     {
         if (!is_array($produktuak) || empty($produktuak)) {
             return "<p>Ez daude eskaintzak erakusteko.</p>";
@@ -101,6 +115,7 @@ class ProduktuaDB
 
         return $html;
     }
+
     public static function generarNobedadeak($produktuak) {
         $nobedadeak = array_filter($produktuak, function($produktua) {
             return method_exists($produktua, 'getNobedadeak') 
@@ -145,20 +160,17 @@ class ProduktuaDB
         
         return $img_file;
     }
-   public static function selectProduktuakByKategoria($idKategoria) {
+
+    public static function selectProduktuakByKategoria($idKategoria) {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            $idKategoria = (int) $idKategoria;
-
+            $db = self::getPDO();
             $stmt = $db->prepare("SELECT * FROM produktuak WHERE kategoriaId = :id");
-            $stmt->bindValue(':id', $idKategoria, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$idKategoria, PDO::PARAM_INT);
             $stmt->execute();
 
             $produktuak = [];
 
-            while ($erregistroa = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            while ($erregistroa = $stmt->fetch()) {
                 $produktua = new Produktua();
                 $produktua->setId($erregistroa['id']);
                 $produktua->setIzena($erregistroa['izena']);
@@ -171,7 +183,7 @@ class ProduktuaDB
                 $produktuak[] = $produktua;
             }
 
-        return $produktuak;
+            return $produktuak;
 
         } catch (Exception $e) {
             echo "<p>Errorea DB-an: " . $e->getMessage() . "</p>";
@@ -179,21 +191,19 @@ class ProduktuaDB
         }
     }
 
-
     public static function insertProduktua($produktua)
     {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $sql = "INSERT INTO produktuak (izena, deskribapena, mota, prezioa, deskontua, nobedadeak, kategoriaId) VALUES "; 
-            $sql = $sql . "('" . $produktua->getIzena() . "'";
-            $sql = $sql . ",'" . $produktua->getDeskribapena() . "'";
-            $sql = $sql . ",'" . $produktua->getMota() . "'";
-            $sql = $sql . ",'" . $produktua->getPrezioa() . "'";
-            $sql = $sql . ",'" . $produktua->getDeskontua() . "'";
-            $sql = $sql . ",'" . $produktua->getNobedadeak() . "'";
-            $sql = $sql . ",'" . $produktua->getKategoriaId() . "')";
-            $emaitza = $db->exec($sql);
-            return $emaitza;
+            $sql .= "('" . $produktua->getIzena() . "'";
+            $sql .= ",'" . $produktua->getDeskribapena() . "'";
+            $sql .= ",'" . $produktua->getMota() . "'";
+            $sql .= ",'" . $produktua->getPrezioa() . "'";
+            $sql .= ",'" . $produktua->getDeskontua() . "'";
+            $sql .= ",'" . $produktua->getNobedadeak() . "'";
+            $sql .= ",'" . $produktua->getKategoriaId() . "')";
+            return $db->exec($sql);
 
         } catch (Exception $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
@@ -201,9 +211,9 @@ class ProduktuaDB
         }
     }
 
-   public static function updateProduktua($produktua) {
+    public static function updateProduktua($produktua) {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $sql = "UPDATE produktuak SET izena = :izena, deskribapena = :deskribapena, mota = :mota, prezioa = :prezioa, deskontua = :deskontua, nobedadeak = :nobedadeak, kategoriaId = :kategoriaId WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':izena', $produktua->getIzena());
@@ -215,6 +225,7 @@ class ProduktuaDB
             $stmt->bindValue(':kategoriaId', $produktua->getKategoriaId());
             $stmt->bindValue(':id', $produktua->getId());
             return $stmt->execute();
+
         } catch (Exception $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return false;
@@ -222,21 +233,22 @@ class ProduktuaDB
     }
 
     public static function deleteProduktua($id)
-{
-    if (\com\leartik\daw24jore\eskariak\EskariaDB::isProduktuaDetailetan($id)) {
-        return false; 
-    }
+    {
+        if (\com\leartik\daw24jore\eskariak\EskariaDB::isProduktuaDetailetan($id)) {
+            return false;
+        }
 
-    try {
-        $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
-        $sql = "DELETE FROM produktuak WHERE id = :id";
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        return $stmt->execute();
-    } catch (Exception $e) {
-        echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
-        return false;
+        try {
+            $db = self::getPDO();
+            $sql = "DELETE FROM produktuak WHERE id = :id";
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+
+        } catch (Exception $e) {
+            echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
+            return false;
+        }
     }
-}
 }
 ?>

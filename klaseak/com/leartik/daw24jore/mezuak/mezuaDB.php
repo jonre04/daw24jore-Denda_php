@@ -3,67 +3,82 @@
 namespace com\leartik\daw24jore\mezuak;
 
 use PDO;
+use PDOException;
 
 class MezuaDB
 {
+    private static function getPDO()
+    {
+        return new PDO(
+            "mysql:host=localhost;dbname=denda;charset=utf8mb4",
+            "admin",
+            "Leaartibai25",
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ]
+        );
+    }
+
     public static function selectMezuak()
     {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $erregistroak = $db->query('SELECT * FROM mezuak');
-            $mezuak = array();
+            $mezuak = [];
 
-            while ($erregistroa = $erregistroak->fetch(PDO::FETCH_ASSOC)) {
+            while ($erregistroa = $erregistroak->fetch()) {
                 $mezua = new Mezua();
                 $mezua->setId($erregistroa['id']);
                 $mezua->setIzena($erregistroa['izena']);
                 $mezua->setEmail($erregistroa['email']);
                 $mezua->setMezuaTestua($erregistroa['mezuaTestua']);
-                $mezua->setDataOrdua($erregistroa['dataOrdua'] ?? $erregistroa['dataOrdua']); 
+                $mezua->setDataOrdua($erregistroa['dataOrdua'] ?? $erregistroa['dataOrdua']);
                 $mezuak[] = $mezua;
             }
 
             return $mezuak;
 
-        } catch (\Exception $e) {
+        } catch (PDOException $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return null;
         }
     }
+
     public static function getAllMezuak()
     {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $erregistroak = $db->query('SELECT * FROM mezuak');
-            $mezuak = array();
+            $mezuak = [];
 
-            while ($erregistroa = $erregistroak->fetch(PDO::FETCH_ASSOC)) {
+            while ($erregistroa = $erregistroak->fetch()) {
                 $mezua = new Mezua();
                 $mezua->setId($erregistroa['id']);
                 $mezua->setIzena($erregistroa['izena']);
                 $mezua->setEmail($erregistroa['email']);
                 $mezua->setMezuaTestua($erregistroa['mezuaTestua']);
-                $mezua->setDataOrdua($erregistroa['dataOrdua'] ?? $erregistroa['dataOrdua']); 
+                $mezua->setDataOrdua($erregistroa['dataOrdua'] ?? $erregistroa['dataOrdua']);
                 $mezuak[] = $mezua;
             }
 
             return $mezuak;
 
-        } catch (\Exception $e) {
+        } catch (PDOException $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return null;
         }
     }
-    public static function selectMezua($id) {
+
+    public static function selectMezua($id)
+    {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
+            $db = self::getPDO();
             $stmt = $db->prepare('SELECT * FROM mezuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
-            if ($erregistroa = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($erregistroa = $stmt->fetch()) {
                 $mezua = new Mezua();
                 $mezua->setId($erregistroa['id']);
                 $mezua->setIzena($erregistroa['izena']);
@@ -73,38 +88,40 @@ class MezuaDB
                 return $mezua;
             }
             return null;
-        } catch (\Exception $e) { 
-            return null; 
+
+        } catch (PDOException $e) {
+            return null;
         }
     }
 
     public static function insertMezua($mezua)
     {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $stmt = $db->prepare(
-                'INSERT INTO mezuak (izena, email, mezuaTestua, dataOrdua) 
-                VALUES (:izena, :email, :mezuaTestua, :dataOrdua)' 
+                'INSERT INTO mezuak (izena, email, mezuaTestua, dataOrdua)
+                 VALUES (:izena, :email, :mezuaTestua, :dataOrdua)'
             );
             $stmt->bindValue(':izena', $mezua->getIzena());
             $stmt->bindValue(':email', $mezua->getEmail());
             $stmt->bindValue(':mezuaTestua', $mezua->getMezuaTestua());
-            $stmt->bindValue(':dataOrdua', $mezua->getDataOrdua()); 
-            
+            $stmt->bindValue(':dataOrdua', $mezua->getDataOrdua());
+
             return $stmt->execute() ? $db->lastInsertId() : 0;
 
-        } catch (\Exception $e) {
+        } catch (PDOException $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return 0;
         }
     }
 
-    public static function updateMezua($mezua) {
+    public static function updateMezua($mezua)
+    {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $stmt = $db->prepare(
-                'UPDATE mezuak SET izena = :izena, email = :email, 
-                 mezuaTestua = :mezuaTestua, erantzunDa = :erantzunDa 
+                'UPDATE mezuak SET izena = :izena, email = :email,
+                 mezuaTestua = :mezuaTestua, erantzunDa = :erantzunDa
                  WHERE id = :id'
             );
             $stmt->bindValue(':id', $mezua->getId(), PDO::PARAM_INT);
@@ -112,20 +129,23 @@ class MezuaDB
             $stmt->bindValue(':email', $mezua->getEmail());
             $stmt->bindValue(':mezuaTestua', $mezua->getMezuaTestua());
             $stmt->bindValue(':erantzunDa', $mezua->getErantzunDa() ? 1 : 0, PDO::PARAM_INT);
+
             return $stmt->execute();
-        } catch (\Exception $e) { return false; }
+
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 
     public static function deleteMezua($id)
     {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $stmt = $db->prepare('DELETE FROM mezuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            
             return $stmt->execute();
 
-        } catch (\Exception $e) {
+        } catch (PDOException $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return false;
         }

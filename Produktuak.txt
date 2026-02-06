@@ -1,4 +1,4 @@
-1|Kamiseta Nike Dri-FIT ADV|Errendimendu handiko kirol-kamiseta, Dri-FIT ADV teknologiarekin transpiragarritasun maximoa lortzeko|Manga laburreko kamiseta|39.99|0|1|1
+1|Kamiseta Nike Dri-FIT ADV|Errendimendu handiko kirol-kamiseta, Dri-FIT ADV teknologiarekin transpiragarritasun maximoa lortzeko|Manga laburreko|39.99|0|1|1
 2|Camiseta Adidas Primeblue|Parley Ocean Plastic hondakinekin egindako kamiseta iraunkorra, mozketa eroso eta egonkorrarekin|Manga laburra|34.99|0|0|1
 3|The North Face Easy Tee Kamiseta|Kotoi organiko premiumez egindako kamiseta, aurrealdeko logotipo serigrafiatua duena|Manga laburra|29.99|10|0|1
 4|Under Armour HeatGear Tank Tiranteduna|Konpresio arineko tiranteduna, HeatGear ehunarekin gorputza beti lehor mantentzeko|Tiranteduna|27.99|0|0|1
@@ -53,7 +53,7 @@ CREATE TABLE produktuak (
 
 
 INSERT INTO produktuak (izena, deskribapena, mota, prezioa, deskontua, nobedadeak, kategoriaId) VALUES
-('Kamiseta Nike Dri-FIT ADV', 'Errendimendu handiko kirol-kamiseta, Dri-FIT ADV teknologiarekin transpiragarritasun maximoa lortzeko', 'Manga laburreko kamiseta', 39.99, 0, 1, 1),
+('Kamiseta Nike Dri-FIT ADV', 'Errendimendu handiko kirol-kamiseta, Dri-FIT ADV teknologiarekin transpiragarritasun maximoa lortzeko', 'Manga laburreko', 39.99, 0, 1, 1),
 ('Camiseta Adidas Primeblue', 'Parley Ocean Plastic hondakinekin egindako kamiseta iraunkorra, mozketa eroso eta egonkorrarekin', 'Manga laburra', 34.99, 0, 0, 1),
 ('The North Face Easy Tee Kamiseta', 'Kotoi organiko premiumez egindako kamiseta, aurrealdeko logotipo serigrafiatua duena', 'Manga laburra', 29.99, 10, 0, 1),
 ('Under Armour HeatGear Tank Tiranteduna', 'Konpresio arineko tiranteduna, HeatGear ehunarekin gorputza beti lehor mantentzeko', 'Tiranteduna', 27.99, 0, 0, 1),

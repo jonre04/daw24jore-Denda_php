@@ -1,17 +1,32 @@
 <?php
 
 namespace com\leartik\daw24jore\kategoriak;
+
 use PDO;
+use PDOException;
 use Exception;
 
 class KategoriaDB
 {
+    private static function getPDO()
+    {
+        return new PDO(
+            "mysql:host=localhost;dbname=denda;charset=utf8mb4",
+            "admin",
+            "Leaartibai25",
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ]
+        );
+    }
+
     public static function selectKategoriak()
     {
         try {
-             $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $erregistroak = $db->query('SELECT * FROM kategoriak');
-            $kategoriak = array();
+            $kategoriak = [];
 
             while ($erregistroa = $erregistroak->fetch()) {
                 $kategoria = new Kategoria();
@@ -20,6 +35,7 @@ class KategoriaDB
                 $kategoria->setDeskribapena($erregistroa['deskribapena']);
                 $kategoriak[] = $kategoria;
             }
+
             return $kategoriak;
 
         } catch (Exception $e) {
@@ -27,22 +43,24 @@ class KategoriaDB
             return null;
         }
     }
+
     public static function selectKategoria($id)
     {
-       try{
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
-            $erregistroak = $db->query('SELECT * FROM kategoriak where id=' . $id);
-            $kategoriak = null;
+        try {
+            $db = self::getPDO();
+            $erregistroak = $db->query('SELECT * FROM kategoriak WHERE id=' . $id);
+            $kategoria = null;
 
             if ($erregistroa = $erregistroak->fetch()) {
-                $kategoria = new kategoria();
+                $kategoria = new Kategoria();
                 $kategoria->setId($erregistroa['id']);
                 $kategoria->setIzena($erregistroa['izena']);
                 $kategoria->setDeskribapena($erregistroa['deskribapena']);
-                $kategoriak = $kategoria;
             }
+
             return $kategoria;
-         } catch (Exception $e) {
+
+        } catch (Exception $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return null;
         }
@@ -51,12 +69,11 @@ class KategoriaDB
     public static function insertKategoria($kategoria)
     {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
-            $sql = "INSERT INTO kategoriak (izena, deskribapena) VALUES "; 
-            $sql = $sql . "('" . $kategoria->getIzena() . "'";
-            $sql = $sql . ",'" . $kategoria->getDeskribapena() . "')";
-            $emaitza = $db->exec($sql);
-            return $emaitza;
+            $db = self::getPDO();
+            $sql = "INSERT INTO kategoriak (izena, deskribapena) VALUES ";
+            $sql .= "('" . $kategoria->getIzena() . "'";
+            $sql .= ",'" . $kategoria->getDeskribapena() . "')";
+            return $db->exec($sql);
 
         } catch (Exception $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
@@ -64,15 +81,17 @@ class KategoriaDB
         }
     }
 
-   public static function updatekategoria($kategoria) {
+    public static function updatekategoria($kategoria)
+    {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $sql = "UPDATE kategoriak SET izena = :izena, deskribapena = :deskribapena WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':izena', $kategoria->getIzena());
             $stmt->bindValue(':deskribapena', $kategoria->getDeskribapena());
             $stmt->bindValue(':id', $kategoria->getId());
             return $stmt->execute();
+
         } catch (Exception $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return false;
@@ -82,11 +101,12 @@ class KategoriaDB
     public static function deletekategoria($id)
     {
         try {
-            $db = new PDO("sqlite:/var/www/html/daw24jore-Denda_php/Denda.db");
+            $db = self::getPDO();
             $sql = "DELETE FROM kategoriak WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             return $stmt->execute();
+
         } catch (Exception $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return false;
