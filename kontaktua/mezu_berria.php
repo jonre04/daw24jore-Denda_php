@@ -23,9 +23,9 @@ use com\leartik\daw24jore\mezuak\MezuaDB;
       <li><a href="../hasiera/index.php">Index</a></li>
       <li><a href="../katalogoa/index.php">Katalogoa</a></li>
       <li><a href="../saskia/index.php">Saskia</a></li>
-      <li><a href="../eskaria/index.php">Eskaria</a></li>
       <li><a href="../kontaktua/index.php">Kontaktua</a></li>
-      <li><a href="../mediateka/index.html">Mediateka</a></li>
+      <li><a href="../mediateka/index.php">Mediateka</a></li>
+      <li><a href="../albisteak/index.php">Albisteak</a></li>
       </ul>
       </nav>
 </header>

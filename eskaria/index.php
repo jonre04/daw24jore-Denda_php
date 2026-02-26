@@ -5,12 +5,15 @@ require_once('../klaseak/com/leartik/daw24jore/saskia/saskia.php');
 require_once('../klaseak/com/leartik/daw24jore/bezeroak/bezeroa.php');
 require_once('../klaseak/com/leartik/daw24jore/eskariak/eskaria.php');
 require_once('../klaseak/com/leartik/daw24jore/eskariak/eskariaDB.php');
+require_once('../klaseak/com/leartik/daw24jore/produktuak/produktua.php');
+require_once('../klaseak/com/leartik/daw24jore/produktuak/produktuaDB.php');
+
 session_start();
 
 use com\leartik\daw24jore\bezeroak\Bezeroak;
 use com\leartik\daw24jore\eskariak\Eskaria;
 use com\leartik\daw24jore\eskariak\EskariaDB;
-
+use com\leartik\daw24jore\produktuak\ProduktuaDB;
 
 if (isset($_POST['bidali'])) {
     $izena = trim($_POST['izena']);
@@ -40,27 +43,28 @@ if (isset($_POST['bidali'])) {
         $bezeroa->setProbintzia($probintzia);
         $bezeroa->setEmaila($emaila);
 
-       $eskaria = new Eskaria();
+        $eskaria = new Eskaria();
         $eskaria->setBezeroa($bezeroa);
         $eskaria->setData(new \DateTime());
 
         $eskariaId = EskariaDB::insertEskaria($eskaria);
 
         if ($eskariaId > 0) {
-       
             if (isset($_SESSION['saskia']) && count($_SESSION['saskia']->getDetaileak()) > 0) {
                 $saskia = $_SESSION['saskia'];
-                $detaileak = $saskia->getDetaileak();
+                $detaileakSaskia = $saskia->getDetaileak();
                 $errorDetalle = false;
 
-                foreach ($detaileak as $detailea) {
-                
+                foreach ($detaileakSaskia as $detailea) {
                     if (!EskariaDB::insertDetailea($detailea, $eskariaId)) {
                         $errorDetalle = true;
                     }
                 }
 
                 if (!$errorDetalle) {
+                    $eskaria->setId($eskariaId);
+                    $eskaria->setDetaileak(EskariaDB::selectDetaileakByEskaria($eskariaId));
+                    
                     unset($_SESSION['saskia']); 
                     include('eskaria_gorde_da.php');
                     exit;
@@ -77,7 +81,7 @@ if (isset($_POST['bidali'])) {
     } else {
         $mezua = "Eremu guztiak bete behar dira.";
     }
-   
+    
     include('eskari_berria.php');
 
 } else {

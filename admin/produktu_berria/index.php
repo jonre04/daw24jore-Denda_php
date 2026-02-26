@@ -1,29 +1,25 @@
 <?php
 session_start();
-$admin = false;
 
-if (isset($_SESSION['erabiltzailea']) && $_SESSION['erabiltzailea'] == "admin") {
-    $admin = true;
-}
-
-if ($admin == false) {
-    header("Location: ..\index.php");
+if (!isset($_SESSION['erabiltzailea']) || $_SESSION['erabiltzailea'] !== "admin") {
+    header("Location: ../index.php");
+    exit;
 }
 
 require('../../klaseak/com/leartik/daw24jore/produktuak/produktua.php');
 require('../../klaseak/com/leartik/daw24jore/produktuak/produktuaDB.php');
+require('../../klaseak/com/leartik/daw24jore/kategoriak/kategoria.php');
+require('../../klaseak/com/leartik/daw24jore/kategoriak/kategoriaDB.php');
 
 use com\leartik\daw24jore\produktuak\Produktua;
 use com\leartik\daw24jore\produktuak\ProduktuaDB;
+use com\leartik\daw24jore\kategoriak\KategoriaDB;
+use com\leartik\daw24jore\kategoriak\Kategoria;
 
+$kategoriak = KategoriaDB::selectKategoriak();
+$mezua = "";
 
-if (isset($_SESSION['erabiltzailea']) && $_SESSION['erabiltzailea'] == "admin") {
-    $admin = true;
-} else {
-    $admin = false;
-}
-if ($admin == true) {
-    if (isset($_POST['gorde'])) {
+if (isset($_POST['gorde'])) {
 
     $izena = trim($_POST['izena']);
     $deskribapena = trim($_POST['deskribapena']);
@@ -33,14 +29,7 @@ if ($admin == true) {
     $nobedadeak = isset($_POST['nobedadeak']) ? 1 : 0;
     $kategoriaId = intval($_POST['kategoriaId']);
 
-    if (
-        $izena !== "" &&
-        $deskribapena !== "" &&
-        $mota !== "" &&
-        $prezioa >= 0 &&
-        $deskontua >= 0 &&
-        $kategoriaId > 0
-    ) {
+    if ($izena !== "" && $deskribapena !== "" && $kategoriaId > 0) {
 
         $produktua = new Produktua();
         $produktua->setIzena($izena);
@@ -61,20 +50,8 @@ if ($admin == true) {
         $mezua = "Eremu guztiak bete behar dira.";
         include('produktu_berria.php');
     }
-    } else {
-        $izena = "";
-        $deskribapena = "";
-        $mota = "";
-        $prezioa = "";
-        $deskontua = "";
-        $nobedadeak = "";
-        $kategoriaId = "";
-        $mezua = "";
-        include('produktu_berria.php');
-    }
+
 } else {
-    header("Location: index.php");
-} ?>
-
-
-         
+    include('produktu_berria.php');
+}
+?>

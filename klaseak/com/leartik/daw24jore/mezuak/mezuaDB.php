@@ -7,10 +7,9 @@ use PDOException;
 
 class MezuaDB
 {
-    private static function getPDO()
-    {
+    public static function getPDO() {
         return new PDO(
-            "mysql:host=localhost;dbname=denda;charset=utf8mb4",
+            "mysql:host=denda.cpscocg6w3uh.eu-central-1.rds.amazonaws.com;dbname=denda;charset=utf8mb4",
             "admin",
             "Leaartibai25",
             [
@@ -19,13 +18,13 @@ class MezuaDB
             ]
         );
     }
-
+    
     public static function selectMezuak()
     {
         try {
-            $db = self::getPDO();
+            $pdo = self::getPDO();
             $erregistroak = $db->query('SELECT * FROM mezuak');
-            $mezuak = [];
+            $mezuak = array();
 
             while ($erregistroa = $erregistroak->fetch()) {
                 $mezua = new Mezua();
@@ -47,18 +46,21 @@ class MezuaDB
 
     public static function getAllMezuak()
     {
+        
         try {
-            $db = self::getPDO();
+            $pdo = self::getPDO();
             $erregistroak = $db->query('SELECT * FROM mezuak');
-            $mezuak = [];
+            $mezuak = array();
 
-            while ($erregistroa = $erregistroak->fetch()) {
+            while ($erregistroa = $erregistroak->fetch(PDO::FETCH_ASSOC)) {
                 $mezua = new Mezua();
+                $id = $erregistroa['id'] ?? 0;
                 $mezua->setId($erregistroa['id']);
                 $mezua->setIzena($erregistroa['izena']);
                 $mezua->setEmail($erregistroa['email']);
                 $mezua->setMezuaTestua($erregistroa['mezuaTestua']);
                 $mezua->setDataOrdua($erregistroa['dataOrdua'] ?? $erregistroa['dataOrdua']);
+                $mezua->setErantzunDa($erregistroa['erantzunDa'] == 1);
                 $mezuak[] = $mezua;
             }
 
@@ -73,12 +75,14 @@ class MezuaDB
     public static function selectMezua($id)
     {
         try {
-            $db = self::getPDO();
+            $pdo = self::getPDO();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             $stmt = $db->prepare('SELECT * FROM mezuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
-            if ($erregistroa = $stmt->fetch()) {
+            if ($erregistroa = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $mezua = new Mezua();
                 $mezua->setId($erregistroa['id']);
                 $mezua->setIzena($erregistroa['izena']);
@@ -97,7 +101,7 @@ class MezuaDB
     public static function insertMezua($mezua)
     {
         try {
-            $db = self::getPDO();
+            $pdo = self::getPDO();
             $stmt = $db->prepare(
                 'INSERT INTO mezuak (izena, email, mezuaTestua, dataOrdua)
                  VALUES (:izena, :email, :mezuaTestua, :dataOrdua)'
@@ -118,7 +122,7 @@ class MezuaDB
     public static function updateMezua($mezua)
     {
         try {
-            $db = self::getPDO();
+            $pdo = self::getPDO();
             $stmt = $db->prepare(
                 'UPDATE mezuak SET izena = :izena, email = :email,
                  mezuaTestua = :mezuaTestua, erantzunDa = :erantzunDa
@@ -140,15 +144,29 @@ class MezuaDB
     public static function deleteMezua($id)
     {
         try {
-            $db = self::getPDO();
+            $pdo = self::getPDO();
             $stmt = $db->prepare('DELETE FROM mezuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            return $stmt->execute();
+            $result = $stmt->execute();
+            return $result;
 
         } catch (PDOException $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
             return false;
         }
     }
+    public static function eguneratuErantzunDa($id, $erantzunDa)
+{
+    $pdo = self::getPDO();
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = "UPDATE mezuak SET erantzunDa = :erantzunDa WHERE id = :id";
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':erantzunDa', $erantzunDa, PDO::PARAM_INT);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+    return $stmt->execute();
+}
 }
 ?>

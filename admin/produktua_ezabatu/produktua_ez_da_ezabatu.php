@@ -7,8 +7,8 @@
     <body>
         <h1>Administrazio gunea</h1>
         <p><a href="..\index.php">Hasiera</a>&gt;</p>
-        <h2>Produktua Aldatu</h2>
-        <p>Produktua aldatu da.</p>
+        <h2>Produktua Ezabatu</h2>
+        <p>Produktua ez da ezabatu.</p>
          <table cellspacing="5" cellpadding="5" border="1">
             <tr>
                 <td align="right">Izena</td>

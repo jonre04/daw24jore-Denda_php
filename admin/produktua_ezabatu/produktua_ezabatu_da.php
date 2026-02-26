@@ -8,6 +8,6 @@
         <h1>Administrazio gunea</h1>
         <p><a href="../index.php">Hasiera</a> &gt;</p>
         <h2>Produktua Ezabatu</h2>
-        <p>Produktua ezabatu da.</p>
+        <p>Produktua ezabatuda.</p>
     </body>
 </html>

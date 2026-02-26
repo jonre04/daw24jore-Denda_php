@@ -8,8 +8,7 @@ use Exception;
 
 class KategoriaDB
 {
-    private static function getPDO()
-    {
+    public static function getPDO() {
         return new PDO(
             "mysql:host=denda.cpscocg6w3uh.eu-central-1.rds.amazonaws.com;dbname=denda;charset=utf8mb4",
             "admin",
@@ -23,10 +22,11 @@ class KategoriaDB
 
     public static function selectKategoriak()
     {
-        try {
-            $db = self::getPDO();
+        try { 
+            $pdo = self::getPDO();
             $erregistroak = $db->query('SELECT * FROM kategoriak');
-            $kategoriak = [];
+            $kategoriak = array();
+
 
             while ($erregistroa = $erregistroak->fetch()) {
                 $kategoria = new Kategoria();
@@ -37,19 +37,17 @@ class KategoriaDB
             }
 
             return $kategoriak;
-
         } catch (Exception $e) {
-            echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
-            return null;
+            return [];
         }
     }
 
     public static function selectKategoria($id)
     {
         try {
-            $db = self::getPDO();
-            $erregistroak = $db->query('SELECT * FROM kategoriak WHERE id=' . $id);
-            $kategoria = null;
+            $pdo = self::getPDO();
+            $erregistroak = $db->query('SELECT * FROM kategoriak where id=' . $id);
+            $kategoriak = null;
 
             if ($erregistroa = $erregistroak->fetch()) {
                 $kategoria = new Kategoria();
@@ -69,7 +67,7 @@ class KategoriaDB
     public static function insertKategoria($kategoria)
     {
         try {
-            $db = self::getPDO();
+            $pdo = self::getPDO();
             $sql = "INSERT INTO kategoriak (izena, deskribapena) VALUES ";
             $sql .= "('" . $kategoria->getIzena() . "'";
             $sql .= ",'" . $kategoria->getDeskribapena() . "')";
@@ -84,7 +82,7 @@ class KategoriaDB
     public static function updatekategoria($kategoria)
     {
         try {
-            $db = self::getPDO();
+            $pdo = self::getPDO();
             $sql = "UPDATE kategoriak SET izena = :izena, deskribapena = :deskribapena WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':izena', $kategoria->getIzena());
@@ -101,7 +99,7 @@ class KategoriaDB
     public static function deletekategoria($id)
     {
         try {
-            $db = self::getPDO();
+            $pdo = self::getPDO();
             $sql = "DELETE FROM kategoriak WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);

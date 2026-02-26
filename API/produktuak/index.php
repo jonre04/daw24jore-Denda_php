@@ -3,7 +3,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 try {
 
-    $db = new PDO("sqlite:C:\\xampp\\htdocs\\Denda\\Denda.db");
+    $db = new PDO("sqlite:C:/xampp/htdocs/daw24jore_Denda/Denda.db");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 

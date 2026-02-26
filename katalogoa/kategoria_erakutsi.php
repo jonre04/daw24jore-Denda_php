@@ -19,32 +19,30 @@
       <li><a href="../hasiera/index.php">Index</a></li>
       <li><a href="../katalogoa/index.php">Katalogoa</a></li>
       <li><a href="../saskia/index.php">Saskia</a></li>
-      <li><a href="../eskaria/index.php">Eskaria</a></li>
       <li><a href="../kontaktua/index.php">Kontaktua</a></li>
-      <li><a href="../mediateka/index.html">Mediateka</a></li>
+      <li><a href="../mediateka/index.php">Mediateka</a></li>
+      <li><a href="../albisteak/index.php">Albisteak</a></li>
       </ul>
-      </nav>
+    </nav>
 </header>
 
- <div class="container mt-4">
+<div class="container mt-4">
       <a href="index.php" class="btn btn-outline-secondary">← Katalogoa</a>
-  </div>
+</div>
 <h1><?php echo htmlspecialchars($kategoria->getIzena()); ?></h1>
 <p><?php echo htmlspecialchars($kategoria->getDeskribapena()); ?></p>
 
 <h2>Kategoria honetako produktuak:</h2>
 <div class="produktuak-flex">
   <?php if (!empty($produktuak)): ?>
-    <?php foreach ($produktuak as $produktua): ?>
+    <?php foreach ($produktuak as $p): ?>
       <?php
-        $id = htmlspecialchars($produktua->getId());
+        $id = htmlspecialchars($p->getId());
         $img_path = "../img/$id.png";
-        if (!file_exists($img_path)) {
-          $img_path = "img/default.png"; 
-        }
-        $prezioa = $produktua->getPrezioa();
-        $deskontua = method_exists($produktua, 'getDeskontua') ? (float)$produktua->getDeskontua() : 0;
-        $is_novedad = method_exists($produktua, 'getNobedadeak') && $produktua->getNobedadeak() == 1;
+        if (!file_exists($img_path)) $img_path = "img/default.png";
+        $prezioa = $p->getPrezioa();
+        $deskontua = method_exists($p, 'getDeskontua') ? (float)$p->getDeskontua() : 0;
+        $is_novedad = method_exists($p, 'getNobedadeak') && $p->getNobedadeak() == 1;
         $prezio_berria = $prezioa * (1 - ($deskontua / 100));
       ?>
       <div class="produktua">
@@ -53,22 +51,15 @@
         <?php elseif ($is_novedad): ?>
           <span class="nobedade-etiketa">NOBEDADEA</span>
         <?php endif; ?>
-        <a href="index.php?produktua_id=<?php echo $produktua->getId(); ?>">
-          <img src="<?php echo htmlspecialchars($img_path); ?>" alt="<?php echo htmlspecialchars($produktua->getIzena()); ?>">
+        <a href="index.php?produktua_id=<?php echo $p->getId(); ?>">
+          <img src="<?php echo htmlspecialchars($img_path); ?>" alt="<?php echo htmlspecialchars($p->getIzena()); ?>">
         </a>
         <h3>
-          <a href="index.php?produktua_id=<?php echo $produktua->getId(); ?>">
-            <?php echo htmlspecialchars($produktua->getIzena()); ?>
+          <a href="index.php?produktua_id=<?php echo $p->getId(); ?>">
+            <?php echo htmlspecialchars($p->getIzena()); ?>
           </a>
         </h3>
-        <?php if ($deskontua > 0): ?>
-          <p>
-            Prezioa: <del><?php echo number_format($prezioa, 2); ?>€</del>
-            <span class="prezio-berria"><?php echo number_format($prezio_berria, 2); ?>€</span>
-          </p>
-        <?php else: ?>
-          <p>Prezioa: <?php echo number_format($prezioa, 2); ?>€</p>
-        <?php endif; ?>
+        <p>Prezioa: <?php echo ($deskontua > 0) ? "<del>".number_format($prezioa,2)."€</del> <span class='prezio-berria'>".number_format($prezio_berria,2)."€</span>" : number_format($prezioa,2)."€"; ?></p>
       </div>
     <?php endforeach; ?>
   <?php else: ?>

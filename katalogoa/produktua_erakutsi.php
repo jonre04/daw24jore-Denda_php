@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo htmlspecialchars($produktua->getIzena()); ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/katalogoa.css"> 
+  <link rel="stylesheet" href="/daw24jore_Denda/katalogoa/css/katalogoa.css"> 
 </head>
 <style>
   
@@ -32,7 +32,7 @@
   <header class="header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-main shadow-sm">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="/Denda/katalogoa/katalogoa.php">
+        <a class="navbar-brand d-flex align-items-center" href="index.php">
           
           <span class="fw-bold">RUN & GO</span>
         </a>
@@ -42,12 +42,13 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto"> <li class="nav-item"><a class="nav-link" href="/Denda/hasiera/index.php">Index</a></li>
+          <ul class="navbar-nav ms-auto"> <li class="nav-item"><a class="nav-link" href="../hasiera/index.php">Hasiera</a></li>
             <li class="nav-item"><a class="nav-link" href="../katalogoa/index.php">Katalogoa</a></li>
             <li class="nav-item"><a class="nav-link" href="../saskia/index.php">Saskia</a></li>
             <li class="nav-item"><a class="nav-link" href="../eskaria/index.php">Eskaria</a></li>
             <li class="nav-item"><a class="nav-link" href="../kontaktua/index.php">Kontaktua</a></li>
             <li class="nav-item"><a class="nav-link" href="../mediateka/index.html">Mediateka</a></li>
+            <li class="nav-item"><a class="nav-link" href="../albisteak/index.php">Albisteak</a></li>
           </ul>
         </div>
       </div>
@@ -55,7 +56,7 @@
   </header>
   
   <main class="main">
-    <div class="container mt-4"> <a href="katalogoa.php" class="btn btn-outline-secondary">← Atzera</a>
+    <div class="container mt-4"> <a href="index.php" class="btn btn-outline-secondary">← Atzera</a>
     </div>
 
     <div class="container my-4"> <div class="card shadow border-0">

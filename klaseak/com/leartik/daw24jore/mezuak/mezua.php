@@ -50,7 +50,7 @@ class Mezua {
     }
 
     public function getErantzunDa() {
-        return $this->setErantzunDa;
+        return $this->erantzunDa;
     }
     public function setDataOrdua($dataOrdua) {
         $this->dataOrdua = $dataOrdua;

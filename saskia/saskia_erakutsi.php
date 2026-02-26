@@ -36,17 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>RUN & GO</h1>
     </div>
 
-    <nav class="menu">
-        <input type="checkbox" id="menu-toggle">
-        <label for="menu-toggle" class="menu-icon">&#9776;</label>
-        <ul class="menu-list">
-            <li><a href="../hasiera/index.php">Index</a></li>
-            <li><a href="../katalogoa/index.php">Katalogoa</a></li>
-            <li><a href="../saskia/index.php">Saskia</a></li>
-            <li><a href="../eskaria/index.php">Eskaria</a></li>
-            <li><a href="../kontaktua/index.php">Kontaktua</a></li>
-            <li><a href="../mediateka/index.html">Mediateka</a></li>
-        </ul>
+     <nav class="menu">
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">&#9776;</label>
+      <ul class="menu-list">
+      <li><a href="../hasiera/index.php">Index</a></li>
+      <li><a href="../katalogoa/index.php">Katalogoa</a></li>
+      <li><a href="../saskia/index.php">Saskia</a></li>
+      <li><a href="../kontaktua/index.php">Kontaktua</a></li>
+      <li><a href="../mediateka/index.php">Mediateka</a></li>
+      <li><a href="../albisteak/index.php">Albisteak</a></li>
+      </ul>
     </nav>
 </header>
 
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <thead class="table-light">
                 <tr>
                     <th>Produktua</th>
-                    <th>Prezioa</th>
+                    <th>Prezioa/unitateko</th>
                     <th style="width: 100px;">Kopurua</th> 
                     <th>Guztira</th>
                     <th>Ekintzak</th>

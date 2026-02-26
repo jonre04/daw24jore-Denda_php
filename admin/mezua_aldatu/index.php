@@ -8,46 +8,38 @@ if (!isset($_SESSION['erabiltzailea']) || $_SESSION['erabiltzailea'] != "admin")
 
 require('../../klaseak/com/leartik/daw24jore/mezuak/mezua.php');
 require('../../klaseak/com/leartik/daw24jore/mezuak/mezuaDB.php');
+
 use com\leartik\daw24jore\mezuak\Mezua;
 use com\leartik\daw24jore\mezuak\MezuaDB;
 
-$id = (isset($_GET['id']) && is_numeric($_GET['id'])) ? intval($_GET['id']) : 0;
+
+$id = (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) ? intval($_REQUEST['id']) : 0;
 
 if ($id === 0) {
-    echo "Errorea: IDa ez da jaso. URLan 'id' parametroa falta da. <br>";
+    echo "Errorea: IDa ez da jaso.";
     exit;
 }
 
 $mezua = MezuaDB::selectMezua($id);
 
 if (!$mezua) {
-    echo "Ez da mezua aurkitu datu-basean ID honekin: " . $id . "<br>";
-    echo "Ziurtatu MezuaDB.php fitxategian Denda.db-rako bidea zuzena dela.";
+    echo "Ez da mezua aurkitu ID honekin: $id";
     exit;
 }
 
 $erroreMezua = "";
 
 if (isset($_POST['gorde'])) {
-    $izena = trim($_POST['izena']);
-    $email = trim($_POST['email']);
-    $mezuaTestua = trim($_POST['mezuaTestua']);
-    $erantzunDa = isset($_POST['erantzunDa']);
 
-    if (!empty($izena) && !empty($email) && !empty($mezuaTestua)) {
-        $mezua->setIzena($izena);
-        $mezua->setEmail($email);
-        $mezua->setMezuaTestua($mezuaTestua);
-        $mezua->setErantzunDa($erantzunDa);
+    $erantzunDa = isset($_POST['erantzunDa']) ? 1 : 0;
 
-        if (MezuaDB::updateMezua($mezua)) {
-            include('mezua_aldatu_da.php');
-            exit;
-        } else {
-            $erroreMezua = "Ezin izan da eguneratu datu-basean.";
-        }
+    $mezua->setErantzunDa($erantzunDa);
+
+    if (MezuaDB::eguneratuErantzunDa($mezua->getId(), $erantzunDa)) {
+        include('mezua_aldatu_da.php');
+        exit;
     } else {
-        $erroreMezua = "Eremu guztiak bete behar dira.";
+        $erroreMezua = "Ezin izan da eguneratu datu-basean.";
     }
 }
 

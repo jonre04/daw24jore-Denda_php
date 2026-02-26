@@ -5,6 +5,8 @@
     <title>Administrazio Gunea</title>
     <style>
         .eskaria-kutxa { border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; border-radius: 5px; }
+        .mezua-erantzunda { color: green; font-weight: bold; }
+        .mezua-gabe { color: red; font-weight: bold; }
         .egoera-bidalita { color: green; font-weight: bold; }
         .egoera-bidaltzeke { color: red; font-weight: bold; }
     </style>
@@ -45,14 +47,26 @@
         <input type="submit" value="Produktu Berria"/>
     </form>
 
-    <h2>Mezuak</h2>
+     <h2>Mezuak</h2>
     <div id="eskarien_lista">
         <?php if (!empty($mezuaDB)): ?>
             <?php foreach ($mezuaDB as $mez): ?>
-                <li>
+                 <li>
+                    <?php echo $mez->getId(); ?> 
                     <?php echo htmlspecialchars($mez->getDataOrdua()); ?>
-                    <?php echo htmlspecialchars($mez->getIzena()); ?>
+                    <strong><?php echo htmlspecialchars($mez->getIzena()); ?></strong>
                     : <?php echo htmlspecialchars($mez->getMezuaTestua()); ?>
+
+                    <?php if ($mez->getErantzunDa()): ?>
+                        <span style="color:green; font-weight:bold;">
+                            [Mezua erantzun da]
+                        </span>
+                    <?php else: ?>
+                        <span style="color:red; font-weight:bold;">
+                            [Mezua erantzun gabe]
+                        </span>
+                    <?php endif; ?>
+
                     [<a href="mezua_aldatu/index.php?id=<?php echo $mez->getId(); ?>">Aldatu</a>]
                     [<a href="mezua_ezabatu/index.php?id=<?php echo $mez->getId(); ?>">Ezabatu</a>]
                 </li>
