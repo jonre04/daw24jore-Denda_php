@@ -12,7 +12,7 @@ class KategoriaDB
         return new PDO(
             "mysql:host=denda.cpscocg6w3uh.eu-central-1.rds.amazonaws.com;dbname=denda;charset=utf8mb4",
             "admin",
-            "Leaartibai25",
+            "leaartibai",
             [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
