@@ -8,9 +8,9 @@ use Exception;
 
 class KategoriaDB
 {
-    public static function getPDO() {
+   public static function getPDO() {
         return new PDO(
-            "mysql:host=denda.cpscocg6w3uh.eu-central-1.rds.amazonaws.com;dbname=denda;charset=utf8mb4",
+            "mysql:host=denda-database.c05kmow6kfu0.us-east-1.rds.amazonaws.com;dbname=denda-database;charset=utf8mb4",
             "admin",
             "leaartibai",
             [
