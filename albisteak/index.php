@@ -1,6 +1,9 @@
 <?php
-$api_url = "http://localhost/Zerbitzari_06_02/data/data.json";
+
+$api_url = __DIR__ . "/data/data.json";
+
 $json_data = @file_get_contents($api_url);
+
 
 if ($json_data === false) {
     die("Error: Ez da fitxategia aurkitu.");
