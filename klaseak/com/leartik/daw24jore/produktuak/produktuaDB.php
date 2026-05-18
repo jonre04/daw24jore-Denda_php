@@ -1,9 +1,10 @@
 <?php
 
+namespace com\leartik\daw24jore\produktuak;
+
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
-namespace com\leartik\daw24jore\produktuak;
 use PDO;
 use Exception;
 use PDOException;
