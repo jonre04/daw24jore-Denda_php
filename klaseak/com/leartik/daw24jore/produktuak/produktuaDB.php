@@ -13,7 +13,7 @@ class ProduktuaDB
 {
     public static function getPDO() {
         return new PDO(
-            "mysql:host=denda-database.c05kmow6kfu0.us-east-1.rds.amazonaws.com;dbname=denda-database;charset=utf8mb4",
+            "mysql:host=denda.c05kmow6kfu0.us-east-1.rds.amazonaws.com;dbname=denda;charset=utf8mb4",
             "admin",
             "leaartibai",
             [
