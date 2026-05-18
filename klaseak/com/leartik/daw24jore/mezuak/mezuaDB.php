@@ -9,7 +9,7 @@ class MezuaDB
 {
     public static function getPDO() {
         return new PDO(
-            "mysql:host=denda-database.c05kmow6kfu0.us-east-1.rds.amazonaws.com;dbname=denda-database;charset=utf8mb4",
+            "mysql:host=denda-database.c05kmow6kfu0.us-east-1.rds.amazonaws.com;dbname=denda;charset=utf8mb4",
             "admin",
             "leaartibai",
             [
@@ -23,7 +23,7 @@ class MezuaDB
     {
         try {
             $pdo = self::getPDO();
-            $erregistroak = $db->query('SELECT * FROM mezuak');
+            $erregistroak = $pdo->query('SELECT * FROM mezuak');
             $mezuak = array();
 
             while ($erregistroa = $erregistroak->fetch()) {
@@ -49,7 +49,7 @@ class MezuaDB
         
         try {
             $pdo = self::getPDO();
-            $erregistroak = $db->query('SELECT * FROM mezuak');
+            $erregistroak = $pdo->query('SELECT * FROM mezuak');
             $mezuak = array();
 
             while ($erregistroa = $erregistroak->fetch(PDO::FETCH_ASSOC)) {
@@ -76,9 +76,9 @@ class MezuaDB
     {
         try {
             $pdo = self::getPDO();
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $stmt = $db->prepare('SELECT * FROM mezuak WHERE id = :id');
+            $stmt = $pdo->prepare('SELECT * FROM mezuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
@@ -102,7 +102,7 @@ class MezuaDB
     {
         try {
             $pdo = self::getPDO();
-            $stmt = $db->prepare(
+            $stmt = $pdo->prepare(
                 'INSERT INTO mezuak (izena, email, mezuaTestua, dataOrdua)
                  VALUES (:izena, :email, :mezuaTestua, :dataOrdua)'
             );
@@ -111,7 +111,7 @@ class MezuaDB
             $stmt->bindValue(':mezuaTestua', $mezua->getMezuaTestua());
             $stmt->bindValue(':dataOrdua', $mezua->getDataOrdua());
 
-            return $stmt->execute() ? $db->lastInsertId() : 0;
+            return $stmt->execute() ? $pdo->lastInsertId() : 0;
 
         } catch (PDOException $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
@@ -123,7 +123,7 @@ class MezuaDB
     {
         try {
             $pdo = self::getPDO();
-            $stmt = $db->prepare(
+            $stmt = $pdo->prepare(
                 'UPDATE mezuak SET izena = :izena, email = :email,
                  mezuaTestua = :mezuaTestua, erantzunDa = :erantzunDa
                  WHERE id = :id'
@@ -145,7 +145,7 @@ class MezuaDB
     {
         try {
             $pdo = self::getPDO();
-            $stmt = $db->prepare('DELETE FROM mezuak WHERE id = :id');
+            $stmt = $pdo->prepare('DELETE FROM mezuak WHERE id = :id');
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $result = $stmt->execute();
             return $result;
@@ -158,10 +158,10 @@ class MezuaDB
     public static function eguneratuErantzunDa($id, $erantzunDa)
 {
     $pdo = self::getPDO();
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $sql = "UPDATE mezuak SET erantzunDa = :erantzunDa WHERE id = :id";
-    $stmt = $db->prepare($sql);
+    $stmt = $pdo->prepare($sql);
 
     $stmt->bindValue(':erantzunDa', $erantzunDa, PDO::PARAM_INT);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);

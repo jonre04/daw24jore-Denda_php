@@ -10,7 +10,7 @@ class KategoriaDB
 {
    public static function getPDO() {
         return new PDO(
-            "mysql:host=denda-database.c05kmow6kfu0.us-east-1.rds.amazonaws.com;dbname=denda-database;charset=utf8mb4",
+            "mysql:host=denda-database.c05kmow6kfu0.us-east-1.rds.amazonaws.com;dbname=denda;charset=utf8mb4",
             "admin",
             "leaartibai",
             [
@@ -24,7 +24,7 @@ class KategoriaDB
     {
         try { 
             $pdo = self::getPDO();
-            $erregistroak = $db->query('SELECT * FROM kategoriak');
+            $erregistroak = $pdo->query('SELECT * FROM kategoriak');
             $kategoriak = array();
 
 
@@ -46,7 +46,7 @@ class KategoriaDB
     {
         try {
             $pdo = self::getPDO();
-            $erregistroak = $db->query('SELECT * FROM kategoriak where id=' . $id);
+            $erregistroak = $pdo->query('SELECT * FROM kategoriak where id=' . $id);
             $kategoriak = null;
 
             if ($erregistroa = $erregistroak->fetch()) {
@@ -71,7 +71,7 @@ class KategoriaDB
             $sql = "INSERT INTO kategoriak (izena, deskribapena) VALUES ";
             $sql .= "('" . $kategoria->getIzena() . "'";
             $sql .= ",'" . $kategoria->getDeskribapena() . "')";
-            return $db->exec($sql);
+            return $pdo->exec($sql);
 
         } catch (Exception $e) {
             echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
@@ -84,7 +84,7 @@ class KategoriaDB
         try {
             $pdo = self::getPDO();
             $sql = "UPDATE kategoriak SET izena = :izena, deskribapena = :deskribapena WHERE id = :id";
-            $stmt = $db->prepare($sql);
+            $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':izena', $kategoria->getIzena());
             $stmt->bindValue(':deskribapena', $kategoria->getDeskribapena());
             $stmt->bindValue(':id', $kategoria->getId());
@@ -101,7 +101,7 @@ class KategoriaDB
         try {
             $pdo = self::getPDO();
             $sql = "DELETE FROM kategoriak WHERE id = :id";
-            $stmt = $db->prepare($sql);
+            $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             return $stmt->execute();
 
