@@ -186,16 +186,13 @@ public static function selectProduktuak()
             return $html;
         }
 
-        private static function getImagePath($produktua) {
-            $img_fs = __DIR__ . "/../img/" . $produktua->getId() . ".png";
-            $img_file = "../img/" . $produktua->getId() . ".png";
+       private static function getImagePath($produktua)
+        {
+            $baseURL="https://d2qdv3lgnkkc79.cloudfront.net/";
 
-            if (!file_exists($img_fs)) {
-                $img_file = "../img/default.png";
-            }
-            
-            return $img_file;
+            return $baseURL.$produktua->getId().".png";
         }
+
     public static function selectProduktuakByKategoria($idKategoria) {
             try {
                 $pdo = self::getPDO();
