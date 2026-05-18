@@ -1,28 +1,11 @@
 <!DOCTYPE html>
 <html lang="eu">
   <head> 
-   <script>
-      if (!window.crypto || !window.crypto.randomUUID) {
-          window.crypto = window.crypto || {};
-
-          window.crypto.randomUUID = function () {
-              return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-                  (
-                      c ^
-                      (window.crypto.getRandomValues(new Uint8Array(1))[0] &
-                      (15 >> c / 4))
-                  ).toString(16)
-              );
-          };
-
-          console.log("Parche aplicado");
-      }
-      </script>
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>RUN & GO</title> 
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/index.css"> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>RUN & GO</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css"> 
   </head> 
   <body> 
     <header class="header">

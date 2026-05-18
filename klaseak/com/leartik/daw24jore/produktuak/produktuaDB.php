@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
 namespace com\leartik\daw24jore\produktuak;
 use PDO;
 use Exception;
@@ -19,38 +22,71 @@ class ProduktuaDB
         );
     }
    
-    public static function selectProduktuak()
-    {
-        try {
-            $pdo = self::getPDO();
-            $erregistroak = $db->query('SELECT * FROM produktuak');
-            $produktuak = array(); 
+public static function selectProduktuak()
+{
+    try {
 
-            while ($erregistroa = $erregistroak->fetch()) {
-                $produktua = new Produktua();
-                $produktua->setId($erregistroa['id']);
-                $produktua->setIzena($erregistroa['izena']);
-                $produktua->setDeskribapena($erregistroa['deskribapena']);
-                $produktua->setMota($erregistroa['mota']);
-                $produktua->setPrezioa($erregistroa['prezioa']);
-                $produktua->setDeskontua($erregistroa['deskontua']);
-                $produktua->setNobedadeak($erregistroa['nobedadeak']);
-                $produktua->setKategoriaId($erregistroa['kategoriaId']);
-                $produktuak[] = $produktua;
-            }
+        $pdo=self::getPDO();
 
-            return $produktuak;
+        $stmt=$pdo->query(
+            "SELECT * FROM produktuak"
+        );
 
-        } catch (PDOException $e) {
-            error_log($e->getMessage());
-            return [];
+        $produktuak=[];
+
+        while($erregistroa=$stmt->fetch()){
+
+            $produktua=new Produktua();
+
+            $produktua->setId(
+                $erregistroa['id']
+            );
+
+            $produktua->setIzena(
+                $erregistroa['izena']
+            );
+
+            $produktua->setDeskribapena(
+                $erregistroa['deskribapena']
+            );
+
+            $produktua->setMota(
+                $erregistroa['mota']
+            );
+
+            $produktua->setPrezioa(
+                $erregistroa['prezioa']
+            );
+
+            $produktua->setDeskontua(
+                $erregistroa['deskontua']
+            );
+
+            $produktua->setNobedadeak(
+                $erregistroa['nobedadeak']
+            );
+
+            $produktua->setKategoriaId(
+                $erregistroa['kategoriaId']
+            );
+
+            $produktuak[]=$produktua;
         }
+
+        return $produktuak;
+
+    } catch(PDOException $e){
+
+        echo $e->getMessage();
+
+        return [];
     }
+}
 
         public static function selectProduktua($id){
             try {
                 $pdo = self::getPDO();
-                $stmt = $db->prepare('SELECT * FROM produktuak WHERE id = :id');
+                $stmt = $pdo->prepare('SELECT * FROM produktuak WHERE id = :id');
                 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
                 $stmt->execute();
                 
@@ -162,11 +198,11 @@ class ProduktuaDB
     public static function selectProduktuakByKategoria($idKategoria) {
             try {
                 $pdo = self::getPDO();
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $idKategoria = (int) $idKategoria;
 
-                $stmt = $db->prepare("SELECT * FROM produktuak WHERE kategoriaId = :id");
+                $stmt = $pdo->prepare("SELECT * FROM produktuak WHERE kategoriaId = :id");
                 $stmt->bindValue(':id', $idKategoria, PDO::PARAM_INT);
                 $stmt->execute();
 
@@ -198,20 +234,32 @@ class ProduktuaDB
         {
             try {
                 $pdo = self::getPDO();
-                $sql = "INSERT INTO produktuak (izena, deskribapena, mota, prezioa, deskontua, nobedadeak, kategoriaId) VALUES "; 
-                $sql = $sql . "('" . $produktua->getIzena() . "'";
-                $sql = $sql . ",'" . $produktua->getDeskribapena() . "'";
-                $sql = $sql . ",'" . $produktua->getMota() . "'";
-                $sql = $sql . ",'" . $produktua->getPrezioa() . "'";
-                $sql = $sql . ",'" . $produktua->getDeskontua() . "'";
-                $sql = $sql . ",'" . $produktua->getNobedadeak() . "'";
-                $sql = $sql . ",'" . $produktua->getKategoriaId() . "')";
-                $emaitza = $db->exec($sql);
+                $stmt = $pdo->prepare("
+                INSERT INTO produktuak
+                (izena, deskribapena, mota, prezioa,
+                deskontua, nobedadeak, kategoriaId)
+
+                VALUES
+                (:izena,:deskribapena,:mota,
+                :prezioa,:deskontua,:nobedadeak,
+                :kategoriaId)
+                ");
+
+                $stmt->execute([
+                ':izena'=>$produktua->getIzena(),
+                ':deskribapena'=>$produktua->getDeskribapena(),
+                ':mota'=>$produktua->getMota(),
+                ':prezioa'=>$produktua->getPrezioa(),
+                ':deskontua'=>$produktua->getDeskontua(),
+                ':nobedadeak'=>$produktua->getNobedadeak(),
+                ':kategoriaId'=>$produktua->getKategoriaId()
+                ]);
+                $emaitza = $stmt->rowCount();
                 return $emaitza;
 
-            } catch (Exception $e) {
-                echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
-                return 0;
+                } catch (Exception $e) {
+                    echo "<p>Salbuespena: " . $e->getMessage() . "</p>\n";
+                    return 0;
             }
         }
 
@@ -219,7 +267,7 @@ class ProduktuaDB
             try {
                 $pdo = self::getPDO();
                 $sql = "UPDATE produktuak SET izena = :izena, deskribapena = :deskribapena, mota = :mota, prezioa = :prezioa, deskontua = :deskontua, nobedadeak = :nobedadeak, kategoriaId = :kategoriaId WHERE id = :id";
-                $stmt = $db->prepare($sql);
+                $stmt = $pdo->prepare($sql);
                 $stmt->bindValue(':izena', $produktua->getIzena());
                 $stmt->bindValue(':deskribapena', $produktua->getDeskribapena());
                 $stmt->bindValue(':mota', $produktua->getMota());
@@ -244,7 +292,7 @@ class ProduktuaDB
         try {
             $pdo = self::getPDO();
             $sql = "DELETE FROM produktuak WHERE id = :id";
-            $stmt = $db->prepare($sql);
+            $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             return $stmt->execute();
         } catch (Exception $e) {
