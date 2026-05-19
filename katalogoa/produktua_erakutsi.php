@@ -63,7 +63,6 @@
         <div class="row g-0 align-items-center">
           <?php
             $id = htmlspecialchars($produktua->getId());
-            $img_path = "../img/$id.png";
             $baseURL = "https://d2qdv3lgnkkc79.cloudfront.net/";
             $img_path = $baseURL . $id . ".png";
             $prezioa = $produktua->getPrezioa();

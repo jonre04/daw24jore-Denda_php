@@ -81,7 +81,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../../img/fondo.png');
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://d2qdv3lgnkkc79.cloudfront.net/fondo.png');
   background-size: cover;
   background-position: center;
   color: white;
