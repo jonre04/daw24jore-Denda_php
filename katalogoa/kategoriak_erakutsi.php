@@ -38,11 +38,21 @@
         <h3>Kategoriak</h3>
         <div class="kategoriak-flex">
             <?php 
-            $mis_imagenes = ["../img/1.png", "../img/26.png", "../img/11.png", "../img/32.png", "../img/17.png", "../img/37.png", "../img/22.png", "../img/41.png"];
+            $mis_imagenes = [
+            "https://d2qdv3lgnkkc79.cloudfront.net/1.png",
+            "https://d2qdv3lgnkkc79.cloudfront.net/26.png",
+            "https://d2qdv3lgnkkc79.cloudfront.net/11.png",
+            "https://d2qdv3lgnkkc79.cloudfront.net/32.png",
+            "https://d2qdv3lgnkkc79.cloudfront.net/17.png",
+            "https://d2qdv3lgnkkc79.cloudfront.net/37.png",
+            "https://d2qdv3lgnkkc79.cloudfront.net/22.png",
+            "https://d2qdv3lgnkkc79.cloudfront.net/41.png"
+            ];
+
             $kontagailua = 0; 
             foreach ($kategoriak as $kat): 
                 $nombre_imagen = $mis_imagenes[$kontagailua] ?? "default.png";
-                $img_file = "../img/" . $nombre_imagen;
+                $img_file="https://d2qdv3lgnkkc79.cloudfront.net/".$nombre_imagen;
             ?>
                 <div class="kategoria-txartela">
                     <img src="<?php echo $img_file; ?>" alt="<?php echo htmlspecialchars($kat->getIzena()); ?>">

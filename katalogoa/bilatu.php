@@ -15,7 +15,7 @@ if ($testua === '') {
     
     echo "<h3>Kategoriak</h3><div class='kategoriak-flex'>";
     foreach ($kategoriak as $index => $kat) {
-        $img = $mis_imagenes[$index] ?? "../img/default.png";
+        $img="https://d2qdv3lgnkkc79.cloudfront.net/default.png";
         echo "<div class='kategoria-txartela'>
                 <img src='$img'>
                 <dt><a href='index.php?kategoria_id=".$kat->getId()."'>".htmlspecialchars($kat->getIzena())."</a></dt>
@@ -43,7 +43,7 @@ if (empty($filtratuak)) {
         
         echo "<div class='produktua'>
                 <a href='index.php?produktua_id=$id'>
-                    <img src='../img/$id.png' alt='".$prod->getIzena()."'>
+                    <img src='https://d2qdv3lgnkkc79.cloudfront.net/<?php echo $id; ?>.png' alt='".$prod->getIzena()."'>
                     <h4>".htmlspecialchars($prod->getIzena())."</h4>
                 </a>
                 <p>$prezioa €</p>

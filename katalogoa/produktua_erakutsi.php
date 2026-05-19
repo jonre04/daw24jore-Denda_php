@@ -64,7 +64,8 @@
           <?php
             $id = htmlspecialchars($produktua->getId());
             $img_path = "../img/$id.png";
-            if (!file_exists($img_path)) $img_path = "img/default.png";
+            $baseURL = "https://d2qdv3lgnkkc79.cloudfront.net/";
+            $img_path = $baseURL . $id . ".png";
             $prezioa = $produktua->getPrezioa();
             $deskontua = $produktua->getDeskontua();
            

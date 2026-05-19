@@ -53,12 +53,8 @@
       $prezio_berria = $prezioa * (1 - ($deskontua / 100));
 
       
-      $img_fs = __DIR__ . "/../img/" . $produktua->getId() . ".png";
-      $img_file = "../img/" . $produktua->getId() . ".png";
-
-      if (!file_exists($img_fs)) {
-      $img_file = "../img/default.png";
-      }
+      $img_file="https://d2qdv3lgnkkc79.cloudfront.net/" 
+          .$produktua->getId().".png";
 
       echo "<div class='produktua'>";
       
@@ -102,12 +98,8 @@
       foreach ($nobedadeak as $produktua) {
       $prezioa = (float)$produktua->getPrezioa();
 
-      $img_fs = __DIR__ . "/../img/" . $produktua->getId() . ".png";
-      $img_file = "../img/" . $produktua->getId() . ".png";
-
-      if (!file_exists($img_fs)) {
-      $img_file = "../img/default.png";
-      }
+      $img_file="https://d2qdv3lgnkkc79.cloudfront.net/"
+          .$produktua->getId().".png";
 
       echo "<div class='produktua'>";
       

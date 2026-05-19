@@ -38,7 +38,8 @@
     <?php foreach ($produktuak as $p): ?>
       <?php
         $id = htmlspecialchars($p->getId());
-        $img_path = "../img/$id.png";
+        $baseURL="https://d2qdv3lgnkkc79.cloudfront.net/";
+        $img_path=$baseURL.$id.".png";
         if (!file_exists($img_path)) $img_path = "img/default.png";
         $prezioa = $p->getPrezioa();
         $deskontua = method_exists($p, 'getDeskontua') ? (float)$p->getDeskontua() : 0;
