@@ -51,8 +51,8 @@
 
             $kontagailua = 0; 
             foreach ($kategoriak as $kat): 
-                $nombre_imagen = $mis_imagenes[$kontagailua] ?? "default.png";
-                $img_file="https://d2qdv3lgnkkc79.cloudfront.net/".$nombre_imagen;
+                $img_file = $mis_imagenes[$kontagailua]
+                ?? "https://d2qdv3lgnkkc79.cloudfront.net/default.png";
             ?>
                 <div class="kategoria-txartela">
                     <img src="<?php echo $img_file; ?>" alt="<?php echo htmlspecialchars($kat->getIzena()); ?>">

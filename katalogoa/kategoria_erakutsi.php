@@ -40,7 +40,7 @@
         $id = htmlspecialchars($p->getId());
         $baseURL="https://d2qdv3lgnkkc79.cloudfront.net/";
         $img_path=$baseURL.$id.".png";
-        if (!file_exists($img_path)) $img_path = "img/default.png";
+        $img_path = $baseURL.$id.".png";
         $prezioa = $p->getPrezioa();
         $deskontua = method_exists($p, 'getDeskontua') ? (float)$p->getDeskontua() : 0;
         $is_novedad = method_exists($p, 'getNobedadeak') && $p->getNobedadeak() == 1;
